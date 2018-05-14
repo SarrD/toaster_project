@@ -1,0 +1,42 @@
+services:
+    app.admin.commentaire:
+        class: AppBundle\Admin\CommentaireAdmin
+        arguments: [~, AppBundle\Entity\Commentaire, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Commentaire }
+        public: true
+
+    app.admin.connait:
+        class: AppBundle\Admin\ConnaitAdmin
+        arguments: [~, AppBundle\Entity\Connait, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Connait }
+        public: true
+
+    app.admin.message:
+        class: AppBundle\Admin\MessageAdmin
+        arguments: [~, AppBundle\Entity\Message, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Message }
+        public: true
+
+    app.admin.post:
+        class: AppBundle\Admin\PostAdmin
+        arguments: [~, AppBundle\Entity\Post, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Post }
+        public: true
+
+    app.admin.role:
+        class: AppBundle\Admin\RoleAdmin
+        arguments: [~, AppBundle\Entity\Role, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Role }
+        public: true
+
+    app.admin.utilisateur:
+        class: AppBundle\Admin\UtilisateurAdmin
+        arguments: [~, AppBundle\Entity\Utilisateur, SonataAdminBundle:CRUD]
+        tags:
+            - { name: sonata.admin, manager_type: orm, group: admin, label: Utilisateur }
+        public: true
