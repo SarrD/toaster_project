@@ -208,11 +208,6 @@ div#Apropos {
     display: none;
 }
 
-hr.style {
-    border: 0;
-    height: 1.1px;
-    background-image: linear-gradient(to right, rgba(101, 31, 255, 0), rgba(101, 31, 255, 0.75), rgba(101, 31, 255, 0));
-}
 
 
 
@@ -319,28 +314,10 @@ hr.style {
 
 div.tchat {
     background-color: #B39DDB;
-    min-height: 400px;
-    max-height: 400px;
+    min-height:400px;
     width: 90%;
     border: 1px solid #512DA8;
-    border-radius: 10px;
-    overflow-y: scroll;
-}
-
-div.tchat::-webkit-scrollbar-track {
 	border-radius: 10px;
-}
-
-div.tchat::-webkit-scrollbar
-{
-    width: 14px;
-    height: 90%;
-}
-
-div.tchat::-webkit-scrollbar-thumb
-{
-	border-radius: 10px;
-	background-color: #9575CD;
 }
 
 span.tchat > *{
@@ -349,22 +326,6 @@ span.tchat > *{
     line-height: 2;
     background-color: #512DA8;
     color: white;
-    width: 99%;
-    margin: 0 auto;
-    margin-top: 6px;
-    word-wrap: break-word;
-}
-
-span.tchat > *:nth-child(odd) {
-    border-radius: 1.3em;
-    padding: 6px 12px;
-    line-height: 2;
-    background-color: #9575CD;
-    color: white;
-    width: 99%;
-    margin: 0 auto;
-    margin-top: 6px;
-    word-wrap: break-word;
 }
 
 /*********************************** FIN page messagerie *****************************************/
