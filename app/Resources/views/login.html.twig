@@ -28,6 +28,12 @@
   <div class="large-5 medium-12 cell">
 
     <h1>informations supplementaires </h1>
+    <br>
+    {% if connexion_erreur is defined %}
+        {% if connexion_erreur != null %}
+           <div class = 'erreur'>{{ connexion_erreur.messageKey|trans(connexion_erreur.messageData, 'security') }}</div>
+        {% endif %}
+    {% endif %}
 
   </div>
 
@@ -50,7 +56,13 @@
 <input type="hidden" name="_target_path" value="{{ path("register") }}" />
 <input type="submit" name="inscription" class="btn contenu" value="Créer un compte">
 </form>
-<h2 class="text-left subheader">{{erreur}}</h2>
+
+{% if inscription_erreur is defined %}
+    {% if inscription_erreur != null %}
+       <div class = 'erreur'>{{inscription_erreur}}</div>
+    {% endif %}
+{% endif %}
+
 </div>
 
 

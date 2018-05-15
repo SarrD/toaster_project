@@ -13,19 +13,18 @@ use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 class LoginController extends DefaultController
 {
+
+    private static $tab_erreurs = array(
+                              'connexion_erreur'  => null,
+                              'inscription_erreur' => null,);
     /**
      * @Route("/login", name="login")
      */
     public function login(Request $request, AuthenticationUtils $authUtils)
     {
-
       //Utilisateur deja authentifié
       if($this->getUser() != null){
-          $redir =  $this->redirectToRoute('mon_profil');
-
           $roles = $this->getUser()->getRoles();
-
-
           if(in_array("ROLE_ADMIN",$roles)){
               //TODO Route admin
               $redir =  $this->redirectToRoute('sonata_admin_dashboard');
@@ -35,7 +34,14 @@ class LoginController extends DefaultController
 
           }
       }else {
-        $redir = $this->render('login.html.twig',array('erreur' => ""));
+        // erreur de connexion s'il y en a
+        $tab_erreurs['connexion_erreur'] = $authUtils->getLastAuthenticationError();
+
+        // dernier utilisateur connecté
+        //TODO ajouter dans le template twig
+        $lastUsername = $authUtils->getLastUsername();
+
+        $redir = $this->render('login.html.twig',$tab_erreurs);
       }
 
         return $redir;
@@ -65,11 +71,11 @@ class LoginController extends DefaultController
            $params['email']  = $request->request->get('email');
            $params['password']  = $request->request->get('password');
            $pass2 = $request->request->get('password2');
-           $erreur;
+
            if ($params['password'] != $pass2) {
-               $erreur = "Les mots de passe ne correspondent pas.";
+               $tab_erreurs['inscription_erreur'] = "Les mots de passe ne correspondent pas.";
            }else{
-             $erreur ="";
+
               //// TODO: Requete méthode
               $em = $this->getDoctrine()->getManager();
 
@@ -85,12 +91,12 @@ class LoginController extends DefaultController
               try {
                   $em->persist($user);
                   $em->flush();
-                  $erreur = "Inscription validée";
+                  $tab_erreurs['inscription_erreur'] = "Inscription validée";
                 }catch (UniqueConstraintViolationException $e) {
-                  $erreur = "Cette adresse email est deja utilisée.";
+                  $tab_erreurs['inscription_erreur'] = "Cette adresse email est deja utilisée.";
                 }
            }
-            return $this->render('login.html.twig',array('erreur' => $erreur));
+            return $this->render('login.html.twig',$tab_erreurs);
        }else{
           return  $this->redirectToRoute('login');
        }
