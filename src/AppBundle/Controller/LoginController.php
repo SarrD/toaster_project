@@ -28,7 +28,7 @@ class LoginController extends DefaultController
 
           if(in_array("ROLE_ADMIN",$roles)){
               //TODO Route admin
-              $redir =  $this->redirectToRoute('admin');
+              $redir =  $this->redirectToRoute('sonata_admin_dashboard');
           }else{
             //TODO Route user
               $redir =  $this->redirectToRoute('mon_profil');
