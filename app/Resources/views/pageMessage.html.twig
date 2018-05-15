@@ -1,18 +1,6 @@
-<!DOCTYPE html>
+{% extends 'base.html.twig' %}
 
-{% block html %}
-{% block head %}
-
-	<head>
-		<meta charset="UTF-8">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-
-		<link rel="stylesheet" type="text/css" href="css/style.css">
-		<link rel="stylesheet" type="text/css" href="foundation\css\foundation.css">
-
-		<title>*nom reseau social*</title>
-
-{% endblock head %}
+{% block title %}Message privée{% endblock %}
 
 {% block body %}
 
@@ -31,24 +19,30 @@
 			<input type="text" class="menu" placeholder="Chercher..." />
 		</div>
 
+		<div class="large-2 medium-2 cell lienAccueil">
+			<a href="{{path('login')}}" class="menu">Accueil</a>
+		</div>
+
+		<div class="large-1 medium-1 cell">
+		<a href="#">
+			<img src="{{ asset('css/img/invitations.png')}}" class="menu" alt="Invitations" />
+		</a>
+		</div>
+
+		<div class="large-1 medium-1 cell">
+		<a href="{{path('message')}}">
+			<img src="{{ asset('css/img/messages.png')}}" class="menu" alt="Messages"  />
+		</a>
+		</div>
+
+		<div class="large-1 medium-1 cell">
+			<a href="#">
+			<img src="{{ asset('css/img/parametres.png')}}" class="menu" alt="Paramètres" />
+			</a>
+		</div>
+
 		<div class="large-2 medium-2 cell">
-			<a href="pageTimeLine.php" class="menu">Accueil</a>
-		</div>
-
-		<div class="large-1 medium-1 cell">
-			<img src="css/img/invitations.png" alt="Invitations" />
-		</div>
-
-		<div class="large-1 medium-1 cell">
-			<img src="css/img/messages.png" alt="Messages" />
-		</div>
-
-		<div class="large-1 medium-1 cell">
-			<img src="css/img/parametres.png" alt="Paramètres" />
-		</div>
-
-		<div class="large-2 medium-2 cell">
-			<a href="deconnexion.php" class="menu">Déconnexion</a>
+			<a href="{{ path('logout') }}" class="menu">Déconnexion</a>
 		</div>
 
 	</div>
@@ -56,44 +50,44 @@
 	<div class="grid-x grid-padding-x contenu">
 
 		<div class="large-12 medium-12 cell">
-			<h1> Messagerie privée </h1>
+			<h1>Messagerie privée</h1>
 		</div>
+
 	</div>
 
 	<hr/>
 
-			<div class="grid-x grid-padding-x contenu">
+	<div class="grid-x grid-padding-x contenu">
 
-			<div id="msg" class="large-3 medium-3 cell msg">
-			<h1> Messages </h1>
-			</div>
-			<div id="msg" class="large-8 medium-8 cell msg">
-			<h1> Conversation </h1>
-			</div>
-			</div>
-
-		<div class="grid-x grid-padding-x contenu">
-
-		<div id="tchat" class="large-3 medium-3 cell">
-		<h1> *Liste conversations récentes* </h1>
+		<div id="msg" class="large-4 medium-4 cell msg">
+			<h1>Conversations</h1>
+			<h1>*Liste conversations*</h1>
 		</div>
 
-		<div id="tchat" class="large-8 medium-8 cell tchat">
-		</div>
+		<div id="msg" class="large-8 medium-8 cell msg">
+			<h1>*destinataire*</h1>
+
+				<div class="tchat">
+					<span class="tchat">
+
+					<!--		<div id="pseudo"> prenom nom  | 	<span id="message"> message </span>	</div> -->
+
+
+					</span>
+				</div>
+
+				<form name="message" action="{{ path('message')}}" method="post">
+        			<input name="usermsg" type="text" id="usermsg"  placeholder="Saisissez votre message..." />
+        			<input class="btn" name="envoyer" type="submit"  id="envoyer" value="Envoyer"/>
+				</form>
 		</div>
 
-		<div class="grid-x grid-padding-x contenu">
+	</div>
 
-		<div id="tchat" class="large-3 medium-3 cell">
-		</div>
 
-		<div id="tchat" class="large-8 medium-8 cell ">
-		<form name="message" action="">
-        <input class="msg" name="usermsg" type="text" id="usermsg"  placeholder="Saisissez votre message..." />
-        <input class="btnenv" name="envoyer" type="submit"  id="envoyer" value="Envoyer"/>
-		</form>
-		</div>
-		</div>
+
+		{# <input class="btnenv" name="o" type="submit"  id="o" value="Envoyer"/> #}
+
 
 
 
@@ -107,6 +101,38 @@
 
 
 </div>
-{% endblock body %}
+{% endblock %}
 
-{% endblock html %}
+{% block javascripts %}
+
+<script type="text/javascript">
+
+	$('#envoyer').click(function(e){
+		e.preventDefault();
+
+		var pseudo ="{{prenom | raw}} {{nom | raw}} | "; // on sécurise les données
+		var message = $('#usermsg').val();
+
+		$.post("{{path('message')}}",
+	     {
+	         pseudo: pseudo,
+	        message: message
+	     },
+	     function(data, status){
+	         alert("Data: " + data + "\nStatus: " + status);
+	     });
+
+	$('span.tchat').append("<div>"+pseudo+"<span>"+message+"</span>"+"</div>");
+
+	});
+
+	function charger(){
+		setInterval(function(){
+			alert("Rechargement de la page");
+		}, 3000);
+	}
+
+//charger();
+</script>
+
+{% endblock %}
