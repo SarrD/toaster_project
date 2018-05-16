@@ -63,7 +63,8 @@ public function message(Request $request, $id_destinataire)
                           FROM 'AppBundle:Utilisateur' ue, 'AppBundle:Utilisateur' ud, 'AppBundle:Message' m
                           WHERE m.idEmmeteur = ue.id
                           AND m.idDestinataire=ud.id
-                          AND ((ud.id=:dest AND ue.id=:emmet) OR (ud.id=:emmet AND ue.id=:dest))");
+                          AND ((ud.id=:dest AND ue.id=:emmet) OR (ud.id=:emmet AND ue.id=:dest))
+                          ORDER BY m.heureEnvoi ASC");
             $query->setParameter('emmet',$user_emmeteur->getId())
                   ->setParameter('dest',$user_destinataire->getId());
             $old_messages_txt = $query->getArrayResult();
