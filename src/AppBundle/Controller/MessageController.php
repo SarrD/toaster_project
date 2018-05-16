@@ -46,7 +46,7 @@ public function message(Request $request, $id_destinataire)
             $em = $this->getDoctrine()->getManager();
 
             $message = new Message();
-            $message->setTexte($params['pseudo'].$params['message']);
+            $message->setTexte($params['message']);
             $message->setDateEnvoi($params['heure']);
             $message->setIdEmmeteur($params['id']);
             $message->setIdDestinataire($id_destinataire);

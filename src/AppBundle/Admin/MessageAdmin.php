@@ -49,7 +49,7 @@ class MessageAdmin extends AbstractAdmin
             ->add('heureEnvoi')
             ->add('idEmmeteur')
             ->add('idDestinataire')
-            ->add('id')
+            ->add('id',null, array('required'=>false));
         ;
     }
 

@@ -68,7 +68,7 @@ class Message
     public function setTexte($texte)
     {
         $this->texte = $texte;
-    
+
         return $this;
     }
 
@@ -92,7 +92,7 @@ class Message
     public function setDateEnvoi($dateEnvoi)
     {
         $this->dateEnvoi = $dateEnvoi;
-    
+
         return $this;
     }
 
@@ -116,7 +116,7 @@ class Message
     public function setHeureEnvoi($heureEnvoi)
     {
         $this->heureEnvoi = $heureEnvoi;
-    
+
         return $this;
     }
 
@@ -140,7 +140,7 @@ class Message
     public function setIdEmmeteur($idEmmeteur)
     {
         $this->idEmmeteur = $idEmmeteur;
-    
+
         return $this;
     }
 
@@ -164,7 +164,7 @@ class Message
     public function setIdDestinataire($idDestinataire)
     {
         $this->idDestinataire = $idDestinataire;
-    
+
         return $this;
     }
 
