@@ -30,7 +30,7 @@
 		</div>
 
 		<div class="large-1 medium-1 cell">
-		<a href="{{path('message')}}">
+		<a href="">
 			<img src="{{ asset('css/img/messages.png')}}" class="menu" alt="Messages"  />
 		</a>
 		</div>
@@ -65,10 +65,15 @@
 		</div>
 
 		<div id="msg" class="large-8 medium-8 cell msg">
-			<h1>*destinataire*</h1>
+			<h1>{{prenom_destinataire | raw}} {{nom_destinataire | raw}}</h1>
 
 				<div class="tchat">
 					<span class="tchat">
+
+					{% for message in old_messages %}
+        				<div id="pseudo"> {{message.nom_emmeteur | raw}} {{message.prenom_emmeteur | raw}}  | 	<span id="message"> {{message.texte}} </span>	</div> 
+
+					{% endfor %}
 
 					<!--		<div id="pseudo"> prenom nom  | 	<span id="message"> message </span>	</div> -->
 
@@ -76,7 +81,7 @@
 					</span>
 				</div>
 
-				<form name="message" action="{{ path('message')}}" method="post">
+				<form name="message" action="{{path('message',{'id_destinataire': id_destinataire}) }}" method="post">
         			<input name="usermsg" type="text" id="usermsg"  placeholder="Saisissez votre message..." />
         			<input class="btn" name="envoyer" type="submit"  id="envoyer" value="Envoyer"/>
 				</form>
@@ -113,7 +118,7 @@
 		var pseudo ="{{prenom | raw}} {{nom | raw}} | "; // on sécurise les données
 		var message = $('#usermsg').val();
 
-		$.post("{{path('message')}}",
+		$.post("{{path('message',{'id_destinataire': id_destinataire})}}",
 	     {
 	         pseudo: pseudo,
 	        message: message
