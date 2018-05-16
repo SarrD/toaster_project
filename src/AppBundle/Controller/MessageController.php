@@ -49,6 +49,7 @@ public function message(Request $request, $id_destinataire)
             $message->setTexte($params['pseudo'].$params['message']);
             $message->setDateEnvoi($params['heure']);
             $message->setIdEmmeteur($params['id']);
+            $message->setIdDestinataire($id_destinataire);
             $message->setHeureEnvoi($params['heure']);
             $em->persist($message);
             $em->flush();
