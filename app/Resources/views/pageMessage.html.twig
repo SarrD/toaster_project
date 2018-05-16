@@ -71,7 +71,7 @@
 					<span class="tchat">
 
 					{% for message in old_messages %}
-        				<div id="pseudo"> {{message.nom_emmeteur | raw}} {{message.prenom_emmeteur | raw}}  | 	<span id="message"> {{message.texte}} </span>	</div> 
+        				<div id="pseudo"> {{message.nom_emmeteur | raw}} {{message.prenom_emmeteur | raw}}  | 	<span id="message"> {{message.texte}} </span>	</div>
 
 					{% endfor %}
 
@@ -111,13 +111,10 @@
 {% block javascripts %}
 
 <script type="text/javascript">
-
 	$('#envoyer').click(function(e){
 		e.preventDefault();
-
 		var pseudo ="{{prenom | raw}} {{nom | raw}} | "; // on sécurise les données
 		var message = $('#usermsg').val();
-
 		$.post("{{path('message',{'id_destinataire': id_destinataire})}}",
 	     {
 	         pseudo: pseudo,
@@ -126,17 +123,13 @@
 	     function(data, status){
 	         alert("Le message vient d'être envoyer sur la base ");
 	     });
-
 	$('span.tchat').append("<div>"+pseudo+"<span>"+message+"</span>"+"</div>");
-
 	});
-
 	function charger(){
 		setInterval(function(){
 			alert("Rechargement de la page");
 		}, 3000);
 	}
-
 //charger();
 </script>
 
