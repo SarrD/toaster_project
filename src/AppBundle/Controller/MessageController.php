@@ -60,9 +60,11 @@ public function message(Request $request, $id_destinataire)
             ->createQuery("SELECT ue.nom nom_emmeteur, ue.prenom prenom_emmeteur, ud.nom nom_destinataire, ud.prenom prenom_destinataire, m.texte
                           FROM 'AppBundle:Utilisateur' ue, 'AppBundle:Utilisateur' ud, 'AppBundle:Message' m
                           WHERE m.idEmmeteur = ue.id
-                          AND m.idDestinataire=ud.id");
+                          AND m.idDestinataire=ud.id
+                          AND ((ud.id=:dest AND ue.id=:emmet) OR (ud.id=:emmet AND ue.id=:dest))");
+            $query->setParameter('emmet',$user_emmeteur->getId())
+                  ->setParameter('dest',$user_destinataire->getId());
             $old_messages_txt = $query->getArrayResult();
-
 
                //Creation du tableau de parametres de profil pour le template twig
                //Retour du template rempli
