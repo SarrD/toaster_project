@@ -5,73 +5,50 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\Security\Core\User\UserInterface;
 
-
 /**
  * Utilisateur
- *
- * @ORM\Table(name="utilisateur", uniqueConstraints={@ORM\UniqueConstraint(name="email", columns={"email"})}, indexes={@ORM\Index(name="FK_Utilisateur_id_Role", columns={"id_Role"})})
- * @ORM\Entity
  */
 class Utilisateur implements UserInterface, \Serializable
 {
     /**
      * @var string
-     *
-     * @ORM\Column(name="email", type="string", length=50, nullable=false)
      */
     private $email;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="password", type="string", length=50, nullable=false)
      */
     private $password;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="nom", type="string", length=50, nullable=false)
      */
     private $nom;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="prenom", type="string", length=50, nullable=true)
      */
     private $prenom;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="pp_path", type="string", length=50, nullable=true)
      */
     private $ppPath;
 
     /**
      * @var string
-     *
-     * @ORM\Column(name="bio", type="string", length=255, nullable=true)
      */
     private $bio;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id_Role", type="integer", nullable=true)
      */
     private $idRole;
 
     /**
      * @var integer
-     *
-     * @ORM\Column(name="id", type="integer")
-     * @ORM\Id
-     * @ORM\GeneratedValue(strategy="IDENTITY")
      */
     private $id;
-
 
 
     /**
@@ -84,7 +61,7 @@ class Utilisateur implements UserInterface, \Serializable
     public function setEmail($email)
     {
         $this->email = $email;
-    
+
         return $this;
     }
 
@@ -108,9 +85,10 @@ class Utilisateur implements UserInterface, \Serializable
     public function setPassword($password)
     {
         $this->password = $password;
-    
+
         return $this;
     }
+
 
 
     /**
@@ -123,7 +101,7 @@ class Utilisateur implements UserInterface, \Serializable
     public function setNom($nom)
     {
         $this->nom = $nom;
-    
+
         return $this;
     }
 
@@ -147,7 +125,7 @@ class Utilisateur implements UserInterface, \Serializable
     public function setPrenom($prenom)
     {
         $this->prenom = $prenom;
-    
+
         return $this;
     }
 
@@ -171,7 +149,7 @@ class Utilisateur implements UserInterface, \Serializable
     public function setPpPath($ppPath)
     {
         $this->ppPath = $ppPath;
-    
+
         return $this;
     }
 
@@ -195,7 +173,7 @@ class Utilisateur implements UserInterface, \Serializable
     public function setBio($bio)
     {
         $this->bio = $bio;
-    
+
         return $this;
     }
 
@@ -219,7 +197,7 @@ class Utilisateur implements UserInterface, \Serializable
     public function setIdRole($idRole)
     {
         $this->idRole = $idRole;
-    
+
         return $this;
     }
 
@@ -242,9 +220,6 @@ class Utilisateur implements UserInterface, \Serializable
     {
         return $this->id;
     }
-
-
-
     /**
      * String representation of object
      * @link http://php.net/manual/en/serializable.serialize.php
@@ -354,4 +329,3 @@ class Utilisateur implements UserInterface, \Serializable
         // TODO: Implement eraseCredentials() method.
     }
 }
-

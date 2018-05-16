@@ -16,7 +16,8 @@ class MessageAdmin extends AbstractAdmin
             ->add('texte')
             ->add('dateEnvoi')
             ->add('heureEnvoi')
-            ->add('idUtilisateur')
+            ->add('idEmmeteur')
+            ->add('idDestinataire')
             ->add('id')
         ;
     }
@@ -27,7 +28,8 @@ class MessageAdmin extends AbstractAdmin
             ->add('texte')
             ->add('dateEnvoi')
             ->add('heureEnvoi')
-            ->add('idUtilisateur')
+            ->add('idEmmeteur')
+            ->add('idDestinataire')
             ->add('id')
             ->add('_action', null, [
                 'actions' => [
@@ -45,7 +47,8 @@ class MessageAdmin extends AbstractAdmin
             ->add('texte')
             ->add('dateEnvoi')
             ->add('heureEnvoi')
-            ->add('idUtilisateur')
+            ->add('idEmmeteur')
+            ->add('idDestinataire')
             ->add('id')
         ;
     }
@@ -56,7 +59,8 @@ class MessageAdmin extends AbstractAdmin
             ->add('texte')
             ->add('dateEnvoi')
             ->add('heureEnvoi')
-            ->add('idUtilisateur')
+            ->add('idEmmeteur')
+            ->add('idDestinataire')
             ->add('id')
         ;
     }

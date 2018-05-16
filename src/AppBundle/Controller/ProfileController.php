@@ -14,14 +14,15 @@ class ProfileController extends DefaultController
    public function profile(Request $request, $pseudo)
    {
      //Requete DQL sur "pseudo"
-     $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Utilisateur');
+     $users = $this->getDoctrine()->getManager()->getRepository('AppBundle:Utilisateur');
      //$query = $em->createQuery("SELECT u FROM Utilisateur WHERE  = u.id = :id ");
      //$profile = $query->getResult();
-     $user = $repo->findOneBy(['id' => $pseudo]);
+     $user = $users->findOneBy(['id' => $pseudo]);
 
      if($user == null){
        $this->redirectToRoute('profile_not_found');
      }
+
 
      //Creation du tableau de parametres de profil pour le template twig
      //Retour du template rempli
@@ -29,6 +30,7 @@ class ProfileController extends DefaultController
             'nom' => $user->getNom(),
             'prenom'         => $user->getPrenom(),
             'bio'         => $user->getBio(),
+            'id'         => $user->getId(),
         ));
    }
 

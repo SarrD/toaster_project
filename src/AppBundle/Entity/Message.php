@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Message
  *
- * @ORM\Table(name="message", indexes={@ORM\Index(name="FK_Message_id_Utilisateur", columns={"id_Utilisateur"})})
+ * @ORM\Table(name="message", indexes={@ORM\Index(name="FK_Message_id_Utilisateur1", columns={"id_Emmeteur"}), @ORM\Index(name="FK_Message_id_Utilisateur2", columns={"id_Destinataire"})})
  * @ORM\Entity
  */
 class Message
@@ -36,9 +36,16 @@ class Message
     /**
      * @var integer
      *
-     * @ORM\Column(name="id_Utilisateur", type="integer", nullable=true)
+     * @ORM\Column(name="id_Emmeteur", type="integer", nullable=true)
      */
-    private $idUtilisateur;
+    private $idEmmeteur;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="id_Destinataire", type="integer", nullable=true)
+     */
+    private $idDestinataire;
 
     /**
      * @var integer
@@ -124,27 +131,51 @@ class Message
     }
 
     /**
-     * Set idUtilisateur
+     * Set idEmmeteur
      *
-     * @param integer $idUtilisateur
+     * @param integer $idEmmeteur
      *
      * @return Message
      */
-    public function setIdUtilisateur($idUtilisateur)
+    public function setIdEmmeteur($idEmmeteur)
     {
-        $this->idUtilisateur = $idUtilisateur;
+        $this->idEmmeteur = $idEmmeteur;
     
         return $this;
     }
 
     /**
-     * Get idUtilisateur
+     * Get idEmmeteur
      *
      * @return integer
      */
-    public function getIdUtilisateur()
+    public function getIdEmmeteur()
     {
-        return $this->idUtilisateur;
+        return $this->idEmmeteur;
+    }
+
+    /**
+     * Set idDestinataire
+     *
+     * @param integer $idDestinataire
+     *
+     * @return Message
+     */
+    public function setIdDestinataire($idDestinataire)
+    {
+        $this->idDestinataire = $idDestinataire;
+    
+        return $this;
+    }
+
+    /**
+     * Get idDestinataire
+     *
+     * @return integer
+     */
+    public function getIdDestinataire()
+    {
+        return $this->idDestinataire;
     }
 
     /**

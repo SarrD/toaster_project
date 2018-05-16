@@ -15,9 +15,9 @@ class MessageController extends DefaultController
 {
 
 /**
- * @Route("/message", name="message")
+ * @Route("/message/{id_destinataire}", name="message")
  */
-public function message(Request $request)
+public function message(Request $request, $id_destinataire)
 {
 
     //Recuperation  des donnee de formulaire dans un tableau associatif "$params"
@@ -26,11 +26,14 @@ public function message(Request $request)
     $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Utilisateur');
       $monId = $this->getUser()->getId();
 
-        $user = $repo->findOneBy(['id' => $monId]);
+        $user_emmeteur = $repo->findOneBy(['id' => $monId]);
+        $user_destinataire = $repo->findOneBy(['id' => $id_destinataire]);
 
-        if($user == null){
+        if($user_emmeteur == null || $user_destinataire == null){
           $this->redirectToRoute('profile_not_found');
         }
+
+    // -- Envoi du message en base --
     if($request->getMethod()=="POST"){
             $params['message'] = $_POST['message'];
             $params['pseudo'] = $_POST['pseudo'];
@@ -47,22 +50,31 @@ public function message(Request $request)
             $message->setDateEnvoi($params['heure']);
             $message->setIdUtilisateur($params['id']);
             $message->setHeureEnvoi($params['heure']);
-
             $em->persist($message);
+            $em->flush();
 
-    // actually executes the queries (i.e. the INSERT query)
-    $em->flush();
+          }
 
-}
+          //Recupere les messages envoyés précedemments depuis la base
+            $query = $this->getDoctrine()->getManager()
+            ->createQuery("SELECT ue.nom nom_emmeteur, ue.prenom prenom_emmeteur, ud.nom nom_destinataire, ud.prenom prenom_destinataire, m.texte
+                          FROM 'AppBundle:Utilisateur' ue, 'AppBundle:Utilisateur' ud, 'AppBundle:Message' m
+                          WHERE m.idEmmeteur = ue.id
+                          AND m.idDestinataire=ud.id");
+            $old_messages_txt = $query->getArrayResult();
+
 
                //Creation du tableau de parametres de profil pour le template twig
                //Retour du template rempli
                return $this->render('pageMessage.html.twig', array(
-                      'nom' => $user->getNom(),
-                      'prenom' => $user->getPrenom(),
-                      'bio' => $user->getBio(),
+                      'nom' => $user_emmeteur->getNom(),
+                      'prenom' => $user_emmeteur->getPrenom(),
+                      'bio' => $user_emmeteur->getBio(),
                       'mess' =>$params['message'],
-
+                      'nom_destinataire' => $user_destinataire->getNom(),
+                      'prenom_destinataire' => $user_destinataire->getPrenom(),
+                      'id_destinataire' => $user_destinataire->getId(),
+                      'old_messages' => $old_messages_txt,
                   ));
 
 
