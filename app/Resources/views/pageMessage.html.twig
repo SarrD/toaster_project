@@ -71,7 +71,7 @@
 					<span class="tchat">
 
 					{% for message in old_messages %}
-        				<div id="pseudo"> {{message.nom_emmeteur | raw}} {{message.prenom_emmeteur | raw}}  | 	<span id="message"> {{message.texte}} </span>	</div> 
+        				<div id="pseudo"> {{message.nom_emmeteur | raw}} {{message.prenom_emmeteur | raw}}  | 	<span id="message"> {{message.texte}} </span>	</div>
 
 					{% endfor %}
 
@@ -83,6 +83,7 @@
 
 				<form name="message" action="{{path('message',{'id_destinataire': id_destinataire}) }}" method="post">
         			<input name="usermsg" type="text" id="usermsg"  placeholder="Saisissez votre message..." />
+							<input type="hidden" name="_target_path" value="{{path('message',{'id_destinataire': id_destinataire}) }}" />
         			<input class="btn" name="envoyer" type="submit"  id="envoyer" value="Envoyer"/>
 				</form>
 		</div>

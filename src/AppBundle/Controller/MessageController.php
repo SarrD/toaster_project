@@ -35,23 +35,23 @@ public function message(Request $request, $id_destinataire)
 
     // -- Envoi du message en base --
     if($request->getMethod()=="POST"){
-            $params['message'] = $_POST['message'];
-            $params['pseudo'] = $_POST['pseudo'];
+            $params['message'] = $request->request->get('usermsg');
             $params['date']= date("Y-m-d H:i:s");
             $params['heure']=new \DateTime();
-            $params['id']=$monId;
 
             //texte,dateenvoie,id,iduser,heureEnvoie
 
             $em = $this->getDoctrine()->getManager();
 
             $message = new Message();
-            $message->setTexte($params['pseudo'].$params['message']);
-            $message->setDateEnvoi($params['heure']);
-            $message->setIdUtilisateur($params['id']);
-            $message->setHeureEnvoi($params['heure']);
+            $message->setTexte($params['message']);
+          //  $message->setDateEnvoi($params['heure']);
+            $message->setIdEmmeteur($monId);
+            $message->setIdDestinataire($id_destinataire);
+          //  $message->setHeureEnvoi($params['heure']);
             $em->persist($message);
             $em->flush();
+
 
           }
 
