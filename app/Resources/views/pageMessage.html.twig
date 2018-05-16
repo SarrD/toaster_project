@@ -116,12 +116,10 @@
 	$('#envoyer').click(function(e){
 		e.preventDefault();
 
-		var pseudo ="{{prenom | raw}} {{nom | raw}} | "; // on sécurise les données
 		var message = $('#usermsg').val();
 
 		$.post("{{path('message',{'id_destinataire': id_destinataire})}}",
 	     {
-	         pseudo: pseudo,
 	        message: message
 	     },
 	     function(data, status){
