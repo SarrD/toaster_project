@@ -55,7 +55,7 @@ class UtilisateurAdmin extends AbstractAdmin
             ->add('ppPath')
             ->add('bio')
             ->add('idRole')
-            ->add('id')
+            ->add('id',null, array('required'=>false));
         ;
     }
 
