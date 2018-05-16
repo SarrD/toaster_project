@@ -15,10 +15,7 @@ div.footer {
     /*background-color: #341C09;*/
     /*background-color: #311B92;*/
     background-color: #512DA8;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    margin-top: 25%;
 }
 
 div.contenu {
@@ -110,6 +107,7 @@ a.contenu {
 
 a.menu {
     line-height: 330%;
+    color: #512DA8;
 }
 
 img.menu {
@@ -318,8 +316,8 @@ hr.style {
 
 div.tchat {
     background-color: #B39DDB;
-    min-height: 400px;
-    max-height: 400px;
+    min-height: 450px;
+    max-height: 450px;
     width: 90%;
     border: 1px solid #512DA8;
     border-radius: 10px;
@@ -367,3 +365,17 @@ span.tchat > *:nth-child(odd) {
 }
 
 /*********************************** FIN page messagerie *****************************************/
+
+
+::-webkit-scrollbar-track {
+    background-color: rgba(149, 117, 205, 0.2);
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-thumb {
+	border-radius: 10px;
+	background-color: #9575CD;
+}
