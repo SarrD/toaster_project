@@ -72,6 +72,8 @@ public function message(Request $request, $id_destinataire)
                //Creation du tableau de parametres de profil pour le template twig
                //Retour du template rempli
                return $this->render('pageMessage.html.twig', array(
+                      'nom' => $user_emmeteur->getNom(),
+                      'prenom' => $user_emmeteur->getPrenom(),
                       'nom_destinataire' => $user_destinataire->getNom(),
                       'prenom_destinataire' => $user_destinataire->getPrenom(),
                       'id_destinataire' => $user_destinataire->getId(),
