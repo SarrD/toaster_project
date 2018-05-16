@@ -22,14 +22,14 @@ class Message
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="date_envoi", type="date", nullable=false)
+     * @ORM\Column(name="date_envoi", type="date", nullable=true)
      */
     private $dateEnvoi;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="heure_envoi", type="time", nullable=false)
+     * @ORM\Column(name="heure_envoi", type="time", nullable=true)
      */
     private $heureEnvoi;
 
@@ -65,10 +65,10 @@ class Message
      *
      * @return Message
      */
-    public function setTexte($texte)
+    public function setTexte($text)
     {
-        $this->texte = $texte;
-    
+        $this->texte = $text;
+
         return $this;
     }
 
@@ -92,7 +92,7 @@ class Message
     public function setDateEnvoi($dateEnvoi)
     {
         $this->dateEnvoi = $dateEnvoi;
-    
+
         return $this;
     }
 
@@ -116,7 +116,7 @@ class Message
     public function setHeureEnvoi($heureEnvoi)
     {
         $this->heureEnvoi = $heureEnvoi;
-    
+
         return $this;
     }
 
@@ -140,7 +140,7 @@ class Message
     public function setIdEmmeteur($idEmmeteur)
     {
         $this->idEmmeteur = $idEmmeteur;
-    
+
         return $this;
     }
 
@@ -164,7 +164,7 @@ class Message
     public function setIdDestinataire($idDestinataire)
     {
         $this->idDestinataire = $idDestinataire;
-    
+
         return $this;
     }
 

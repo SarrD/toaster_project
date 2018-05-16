@@ -11,6 +11,7 @@ use AppBundle\Entity\Role;
 use AppBundle\Entity\Message;
 
 
+
 class MessageController extends DefaultController
 {
 
@@ -35,8 +36,8 @@ public function message(Request $request, $id_destinataire)
 
     // -- Envoi du message en base --
     if($request->getMethod()=="POST"){
-            $params['message'] = $request->request->get('usermsg');
-            $params['date']= date("Y-m-d H:i:s");
+
+            $params['message'] = $request->request->get('message');
             $params['heure']=new \DateTime();
 
             //texte,dateenvoie,id,iduser,heureEnvoie
@@ -44,16 +45,17 @@ public function message(Request $request, $id_destinataire)
             $em = $this->getDoctrine()->getManager();
 
             $message = new Message();
-            $message->setTexte($params['message']);
-          //  $message->setDateEnvoi($params['heure']);
+            $message->setTexte("".$params['message']);
+            $message->setDateEnvoi($params['heure']);
             $message->setIdEmmeteur($monId);
             $message->setIdDestinataire($id_destinataire);
-          //  $message->setHeureEnvoi($params['heure']);
-            $em->persist($message);
-            $em->flush();
+            $message->setHeureEnvoi($params['heure']);
+              $em->persist($message);
+              $em->flush();
 
 
-          }
+}
+
 
           //Recupere les messages envoyés précedemments depuis la base
             $query = $this->getDoctrine()->getManager()

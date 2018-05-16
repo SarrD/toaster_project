@@ -76,7 +76,7 @@ class LoginController extends DefaultController
                $tab_erreurs['inscription_erreur'] = "Les mots de passe ne correspondent pas.";
            }else{
 
-              //// TODO: Requete méthode
+            
               $em = $this->getDoctrine()->getManager();
 
               $user = new Utilisateur();
