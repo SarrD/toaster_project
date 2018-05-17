@@ -127,7 +127,15 @@
 	});
 	function charger(){
 		setInterval(function(){
-			alert("Rechargement de la page");
+			$.ajax({
+					url : "{{path('message',{'id_destinataire': id_destinataire})}}", // on passe l'id le plus récent au fichier de chargement
+					type : "GET",
+					success : function(html){
+						{% for message in old_messages %}
+						$('span.tchat').append("<div id='pseudo'>"+"{{message.nom_emmeteur | raw}} {{message.prenom_emmeteur | raw}}  | "+"<span id='message'>"+"{{message.texte | raw}}"+"</span>"+"</div>");
+							{% endfor %}
+					}
+			});
 		}, 3000);
 	}
 //charger();
