@@ -2,52 +2,6 @@
 
 {% block body %}
 
-
-
-<script>
-
-/* Open */
-function openPublication() {
-    document.getElementById("publication").style.height = "100%";
-}
-
-/* Close */
-function closePublication() {
-    document.getElementById("publication").style.height = "0%";
-}
-
-</script>
-
-
-<div id="publication" class="overlay">
-
-		<!-- Button to close the overlay navigation -->
-		<a href="javascript:void(0)" class="closebtn" onclick="closePublication()">&times;</a>
-	  
-		<!-- Overlay content -->
-		<div class="overlay-content">
-		 
-		<form method="post">
-			<textarea rows="7" cols="80">
-			</textarea>
-
-			<br/>
-
-			<input type="submit" name="publier" class="btn" value="Publier"/>	
-		</form>	
-
-		</div>
-	  
-</div>
-
-
-
-
-
-
-
-
-
 <div class="grid-container.fluid">
 
 
@@ -119,11 +73,11 @@ function closePublication() {
 	<div class="grid-x grid-padding-x contenu">
 
 		<div class="large-6 medium-6 cell mur">
-			<span onclick="openPublication()" class="publication">Créer une publication</span>	
+			<p>Créer une publication</p>
 		</div>
 
 		<div class="large-6 medium-6 cell mur">
-			<a href="pageAmis.html.twig" class="barre">Amis</a>
+			<a href="profile.html.twig" class="barre">Profil</a>
 		</div>
 
 	</div>
@@ -199,6 +153,45 @@ function closePublication() {
 		</div>
 
 	</div>
+
+
+
+
+
+
+
+
+
+	<div class="grid-x grid-padding-x contenu">
+
+		<div class="large-4 medium-4 cell">
+			<p>Amis 1</p>
+		</div>
+
+		<div class="large-4 medium-4 cell">
+			<p>Amis 2</p>
+		</div>
+
+		<div class="large-4 medium-4 cell">
+			<p>Amis 3</p>
+		</div>
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
