@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Utilisateur;
+use AppBundle\Entity\Post;
 
 class ProfileController extends DefaultController
 {
@@ -13,6 +14,33 @@ class ProfileController extends DefaultController
    */
    public function profile(Request $request, $pseudo)
    {
+     if ($request->getMethod() == "POST") {
+
+
+         $publication= $request->request->get('publication');
+
+         if ($publication == "" && false) {
+             //Alert ?
+         }else{
+
+
+            $em = $this->getDoctrine()->getManager();
+
+            $publipost = new Post();
+            $publipost->setTexte($publication);
+            $publipost->setDatePost(new \DateTime());
+            $publipost->setHeurePost(new \DateTime());
+            $publipost->setVisibilite(1);
+            $publipost->setIdUtilisateur($this->getUser()->getId());
+            $em->persist($publipost);
+            $em->flush();
+
+            return $this->monProfil();
+         }
+
+         }
+
+
      //Requete DQL sur "pseudo"
      $users = $this->getDoctrine()->getManager()->getRepository('AppBundle:Utilisateur');
      //$query = $em->createQuery("SELECT u FROM Utilisateur WHERE  = u.id = :id ");
@@ -32,7 +60,8 @@ class ProfileController extends DefaultController
             'bio'         => $user->getBio(),
             'id'         => $user->getId(),
             'listePubli' => $this->getListeAllPost($pseudo),
-            'photo' => $user->getPpPath()
+            'photo' => $user->getPpPath(),
+            'monid' => $this->getUser()->getId()
         ));
    }
 
@@ -83,4 +112,5 @@ class ProfileController extends DefaultController
 
        return $liste;
    }
+
 }

@@ -32,11 +32,11 @@ function closePublication() {
 		<div class="overlay-content">
 
 		<form method="post">
-			<textarea rows="7" cols="80">
+			<textarea rows="7" cols="80" name="publication">
 			</textarea>
 
 			<br/>
-
+      <input type="hidden" name="_target_path" value="{{path('profile',{'pseudo': monid}) }}" />
 			<input type="submit" name="publier" class="btn" value="Publier"/>
 		</form>
 
