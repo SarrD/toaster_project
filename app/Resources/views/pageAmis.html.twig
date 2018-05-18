@@ -51,7 +51,7 @@
 	<div class="grid-x grid-padding-x contenu">
 
 		<div class="large-12 medium-12 cell">
-			<img src="{{ asset('css/img/photoProfil.png')}}" class="profil" alt="Photo de profil" />
+			<img src="{{ asset('css/img/photoProfil.png')}}" class="profil" alt="Photo de profil" href="{{path('profile',{'pseudo': id}) }}"/>
 		</div>
 
 	</div>
@@ -74,19 +74,7 @@
 
 	<hr/>
 
-	<div class="grid-x grid-padding-x contenu">
 
-		<div class="large-6 medium-6 cell mur">
-			<p>Créer une publication</p>
-		</div>
-
-		<div class="large-6 medium-6 cell mur">
-			<a href="{{path('profile',{'pseudo': id}) }}" class="barre">Profil</a>
-		</div>
-
-	</div>
-
-	<hr/>
 
 	<div class="grid-x grid-padding-x contenu" id="photo">
 		<div class="gallery cf">
@@ -142,9 +130,9 @@
 	<div class="grid-x grid-padding-x contenu">
 		<div class="large-12 medium-12 cell people-you-might-know">
 		  <div class="add-people-header">
-		    <h6 class="header-title">
+		    <h3 >
 		      Amis
-		    </h6>
+		    </h3>
 		  </div>
 			{% for ami in amis %}
 		  <div class="row add-people-section">
@@ -154,7 +142,7 @@
 		      </div>
 		      <div class="about-people-author">
 		        <h3><a href="{{path('profile',{'pseudo': ami.id}) }}">
-		          {{ami.prenom | raw}} {{ami.nom | raw}} 
+		          {{ami.prenom | raw}} {{ami.nom | raw}}
 		        </a></h3>
 		      </div>
 		    </div>
