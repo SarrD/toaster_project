@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/listeAmis.css') }}">
+{% endblock %}
+
 {% block body %}
 
 <div class="grid-container.fluid">
@@ -54,16 +58,16 @@
 
 	<div class="grid-x grid-padding-x contenu">
 
-		<div class="large-4 medium-4 cell renseignementProfil" onclick="afficheApropos()">
-			<h1>À propos</h1>
+		<div class="large-4 medium-4 cell renseignementProfil">
+			<h1> </h1>
 		</div>
 
 		<div class="large-4 medium-4 cell nomProfil">
-			<h1>{{prenom}} {{nom}}</h1>
+			<h1><a href="{{path('profile',{'pseudo': id}) }}">{{prenom}} {{nom}}</a></h1>
 		</div>
 
-		<div class="large-4 medium-4 cell photoProfil" onclick="affichePhoto()">
-			<h1>Photo</h1>
+		<div class="large-4 medium-4 cell photoProfil" >
+			<h1> </h1>
 		</div>
 
 	</div>
@@ -77,7 +81,7 @@
 		</div>
 
 		<div class="large-6 medium-6 cell mur">
-			<a href="profile.html.twig" class="barre">Profil</a>
+			<a href="{{path('profile',{'pseudo': id}) }}" class="barre">Profil</a>
 		</div>
 
 	</div>
@@ -126,33 +130,6 @@
 		</div>
 	</div>
 
-	<div class="grid-x grid-padding-x contenu" id="Apropos">
-
-		<div class="tab">
-  			<button class="tablinks" onclick="openCity(event, 'London')"><h2>Informations générales et coordonnées</h2></button>
-  			<button class="tablinks" onclick="openCity(event, 'Paris')"><h2>Emploi et scolarité</h2></button>
-  			<button class="tablinks" onclick="openCity(event, 'Tokyo')"><h2>Évènements marquants</h2></button>
-		</div>
-
-		<div id="London" class="tabcontent">
-  			<h2>Coordonnées</h2>
-			  <p>tel</p>
-			  <p>email</p>
-		</div>
-
-		<div id="Paris" class="tabcontent">
-  			<h2>Emploi</h2>
-			  <p>chômage</p>
-			 <h2>Scolarité</h2>
-			 <p>{{bio}}</p>
-		</div>
-
-		<div id="Tokyo" class="tabcontent">
-  			<h2>Évènements</h2>
-  			<p>ecrire</p>
-		</div>
-
-	</div>
 
 
 
@@ -163,18 +140,41 @@
 
 
 	<div class="grid-x grid-padding-x contenu">
-
-		<div class="large-4 medium-4 cell">
-			<p>Amis 1</p>
+		<div class="large-12 medium-12 cell people-you-might-know">
+		  <div class="add-people-header">
+		    <h6 class="header-title">
+		      Amis
+		    </h6>
+		  </div>
+			{% for ami in amis %}
+		  <div class="row add-people-section">
+		    <div class="small-12 medium-6 columns about-people">
+		      <div class="about-people-avatar">
+		        <img class="avatar-image" src="{{ asset('css/img/photoProfil.png')}}" alt="{{ami.photo | raw}}">
+		      </div>
+		      <div class="about-people-author">
+		        <h3><a href="{{path('profile',{'pseudo': ami.id}) }}">
+		          {{ami.prenom | raw}} {{ami.nom | raw}} 
+		        </a></h3>
+		      </div>
+		    </div>
+		    <div class="small-12 medium-6 columns add-friend">
+		      <div class="add-friend-action">
+		        <button class="btn">
+		          <i class="fa fa-user-plus" aria-hidden="true"></i>
+		          Ajouter
+		        </button>
+						<button class="btn-suppr">
+						 <i class="fa fa-user-plus" aria-hidden="true"></i>
+						 Retirer de la liste
+					 </button>
+		      </div>
+		    </div>
+		  </div>
+			{% endfor %}
 		</div>
 
-		<div class="large-4 medium-4 cell">
-			<p>Amis 2</p>
-		</div>
 
-		<div class="large-4 medium-4 cell">
-			<p>Amis 3</p>
-		</div>
 
 	</div>
 

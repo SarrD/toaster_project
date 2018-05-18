@@ -23,21 +23,21 @@ function closePublication() {
 
 		<!-- Button to close the overlay navigation -->
 		<a href="javascript:void(0)" class="closebtn" onclick="closePublication()">&times;</a>
-	  
+
 		<!-- Overlay content -->
 		<div class="overlay-content">
-		 
+
 		<form method="post">
 			<textarea rows="7" cols="80">
 			</textarea>
 
 			<br/>
 
-			<input type="submit" name="publier" class="btn" value="Publier"/>	
-		</form>	
+			<input type="submit" name="publier" class="btn" value="Publier"/>
+		</form>
 
 		</div>
-	  
+
 </div>
 
 
@@ -119,11 +119,11 @@ function closePublication() {
 	<div class="grid-x grid-padding-x contenu">
 
 		<div class="large-6 medium-6 cell mur">
-			<span onclick="openPublication()" class="publication">Créer une publication</span>	
+			<span onclick="openPublication()" class="publication">Créer une publication</span>
 		</div>
 
 		<div class="large-6 medium-6 cell mur">
-			<a href="pageAmis.html.twig" class="barre">Amis</a>
+			<a href="{{path('amis',{'pseudo': id}) }}" class="barre">Amis</a>
 		</div>
 
 	</div>

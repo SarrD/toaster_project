@@ -158,6 +158,32 @@ p {
     border-color: #651FFF;
 }
 
+/*button suppr*/
+.btn-suppr {
+    background-color: #FC7307;
+    /* background-color: #6200EA; */
+    /*background-color:  #990000;*/
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: contenu;
+    /*border-color: #B85B14;*/
+    /*border-color: #311B92;*/
+    border-color: #512DA8;
+    /*color: black;*/
+    color: white;
+    border-radius:10px;
+}
+
+.btn-suppr:hover {
+    /*background-color: #B85B14;
+    border-color: #FC7307;*/
+    /*background-color: #311B92;
+    border-color: #6200EA;*/
+    background-color: #512DA8;
+    border-color: #651FFF;
+}
+
 input[type=text], input[type=password], input[type=email], input[type=number] {
     padding: 10px 20px;
     margin: 8px 8px;
@@ -413,7 +439,7 @@ textarea {
 
 /* The Overlay (background) */
 .overlay {
-    /* Height & width depends on how you want to reveal the overlay (see JS below) */    
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */
     height: 0%;
     width: 100%;
     position: fixed; /* Stay in place */
