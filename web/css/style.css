@@ -449,6 +449,12 @@ div.publiconteneur {
 
 }
 
+div.publicadre{
+  padding:5px;
+  border: 1px solid #512DA8;
+
+}
+
 div.datePublication {
     background-color: #B39DDB;
 }
