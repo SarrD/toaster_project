@@ -122,6 +122,20 @@ img.menu {
     margin-top: 1em;
 }
 
+img.logo {
+    margin-left: 25%;
+    margin-top: 5px;
+    display: block;
+    height: 85%;
+    animation: tourne 10s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes tourne {
+    50% {transform: scaleX(-1);}
+    100% {transform: scaleX(1);}
+}
+
 a:hover {
     /*color: #FC7307;*/
     color: #B39DDB;
