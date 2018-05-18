@@ -417,7 +417,6 @@ span.tchat > *:nth-child(odd) {
 }
 
 
-
 /************************************PUBLICATION*********************************************************/
 
 span.publication {
@@ -435,6 +434,18 @@ textarea {
     border-radius: 10px !important;
     font-family: contenu !important;
     outline: none;
+}
+
+div.publicateur {
+    background-color: #B39DDB;
+}
+
+div.publication {
+    border: 1px solid #B39DDB;
+}
+
+div.datePublication {
+    background-color: #B39DDB;
 }
 
 /* The Overlay (background) */
