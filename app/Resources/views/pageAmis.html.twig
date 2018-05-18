@@ -177,11 +177,11 @@
 		  <div class="row add-people-section">
 		    <div class="small-12 medium-6 columns about-people">
 		      <div class="about-people-avatar">
-		        <img class="avatar-image" src="{{ asset('css/img/photoProfil.png')}}" alt="{{ami | raw}}">
+		        <img class="avatar-image" src="{{ asset('css/img/photoProfil.png')}}" alt="{{ami.id | raw}}">
 		      </div>
 		      <div class="about-people-author">
 		        <p class="author-name">
-		          {{ami | raw}}
+		          {{ami.nom | raw}} {{ami.prenom | raw}}
 		        </p>
 		      </div>
 		    </div>
