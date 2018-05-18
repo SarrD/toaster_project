@@ -65,7 +65,9 @@
 		</div>
 
 		<div id="msg" class="large-8 medium-8 cell msg">
-			<h1>{{prenom_destinataire | raw}} {{nom_destinataire | raw}}</h1>
+			<h3><a href="{{path('profile',{'pseudo': id_Destinataire}) }}">
+				{{prenom_destinataire}} {{nom_destinataire}}
+			</a></h3>
 
 				<div class="tchat">
 					<span class="tchat">
