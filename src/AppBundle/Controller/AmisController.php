@@ -28,6 +28,7 @@ class AmisController extends DefaultController
              'bio'         => $user->getBio(),
              'id'         => $user->getId(),
              'amis' => $this->getListeAmis($user->getId()),
+             'photo' => $user->getPpPath()
          ));
 
          return $pageAmis;

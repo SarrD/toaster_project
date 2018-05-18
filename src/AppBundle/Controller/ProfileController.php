@@ -31,6 +31,8 @@ class ProfileController extends DefaultController
             'prenom'         => $user->getPrenom(),
             'bio'         => $user->getBio(),
             'id'         => $user->getId(),
+            'listePubli' => $this->getListeAllPost($pseudo),
+            'photo' => $user->getPpPath()
         ));
    }
 
@@ -43,5 +45,42 @@ class ProfileController extends DefaultController
       $monId = $this->getUser()->getId();
         return $this->redirectToRoute('profile', array('pseudo' => $monId));
 
+   }
+
+   /**
+    * Get Liste publis
+    *
+    * @return array
+    */
+   public function getListePostPublics($idUser)
+   {
+     $query = $this->getDoctrine()->getManager()
+     ->createQuery("SELECT p.texte texte, p.datePost datep, p.heurePost heurep,  p.visibilite visibilite, u.ppPath photo, u.prenom prenom, u.nom nom, u.id id
+                    FROM 'AppBundle:Utilisateur' u,'AppBundle:Post' p
+                    WHERE p.idUtilisateur = u.id
+                    AND p.visibilite = 1
+                    AND u.id = :id");
+     $query->setParameter('id',$idUser);
+     $liste = $query->getArrayResult();
+
+       return $liste;
+   }
+
+   /**
+    * Get Liste all post
+    *
+    * @return array
+    */
+   public function getListeAllPost($idUser)
+   {
+     $query = $this->getDoctrine()->getManager()
+     ->createQuery("SELECT p.texte texte, p.datePost datep, p.heurePost heurep,  p.visibilite visibilite, u.ppPath photo, u.prenom prenom, u.nom nom, u.id id
+                    FROM 'AppBundle:Utilisateur' u,'AppBundle:Post' p
+                    WHERE p.idUtilisateur = u.id
+                    AND u.id = :id");
+     $query->setParameter('id',$idUser);
+     $liste = $query->getArrayResult();
+
+       return $liste;
    }
 }

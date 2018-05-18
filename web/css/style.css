@@ -444,6 +444,11 @@ div.publication {
     border: 1px solid #B39DDB;
 }
 
+div.publiconteneur {
+  padding-right:auto;
+
+}
+
 div.datePublication {
     background-color: #B39DDB;
 }

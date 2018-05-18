@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/post.css') }}">
+{% endblock %}
+
 {% block body %}
 
 
@@ -200,18 +204,19 @@ function closePublication() {
 
 	</div>
 
+     <div class="grid-x grid-margin-x">
+       		</div>
+          <div class="large-2 medium-2 cell publicateur">
+              {{publi.prenom | raw}} {{publi.nom | raw}}
+       		</div>
+       		</div>
+       	</div>
+<!-- end loop-->
+    {% endfor %}
 
-  <div class="grid-x grid-padding-x">
-  		<div class="large-2 medium-2 cell publicateur">
-  			<h1>*Nom du publicateur*</h1>
-  		</div>
-  		<div class="large-8 medium-8 cell publication">
-  			<h1>*publication*</h1>
-  		</div>
-  		<div class="large-2 medium-2 cell datePublication">
-  			<h1>*date de publication*</h1>
-  		</div>
-  	</div>
+
+
+  </div>
 
 
     <div class="grid-x grid-padding-x footer">
