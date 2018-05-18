@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/listeAmis.css') }}">
+{% endblock %}
+
 {% block body %}
 
 <div class="grid-container.fluid">
@@ -163,18 +167,41 @@
 
 
 	<div class="grid-x grid-padding-x contenu">
-
-		<div class="large-4 medium-4 cell">
-			<p>Amis 1</p>
+		<div class="large-12 medium-12 cell people-you-might-know">
+		  <div class="add-people-header">
+		    <h6 class="header-title">
+		      Amis
+		    </h6>
+		  </div>
+			{% for ami in amis %}
+		  <div class="row add-people-section">
+		    <div class="small-12 medium-6 columns about-people">
+		      <div class="about-people-avatar">
+		        <img class="avatar-image" src="{{ asset('css/img/photoProfil.png')}}" alt="{{ami | raw}}">
+		      </div>
+		      <div class="about-people-author">
+		        <p class="author-name">
+		          {{ami | raw}}
+		        </p>
+		      </div>
+		    </div>
+		    <div class="small-12 medium-6 columns add-friend">
+		      <div class="add-friend-action">
+		        <button class="button primary small">
+		          <i class="fa fa-user-plus" aria-hidden="true"></i>
+		          Ajouter
+		        </button>
+		        <button class="button secondary small">
+		          <i class="fa fa-user-times" aria-hidden="true"></i>
+		          Ignore
+		        </button>
+		      </div>
+		    </div>
+		  </div>
+			{% endfor %}
 		</div>
 
-		<div class="large-4 medium-4 cell">
-			<p>Amis 2</p>
-		</div>
 
-		<div class="large-4 medium-4 cell">
-			<p>Amis 3</p>
-		</div>
 
 	</div>
 

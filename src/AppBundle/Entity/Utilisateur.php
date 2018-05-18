@@ -212,6 +212,17 @@ class Utilisateur implements UserInterface, \Serializable
     }
 
     /**
+     * Get Liste Amis
+     *
+     * @return array
+     */
+    public function getListeAmis()
+    {
+      $liste = [1 => 'Ami 1', 2 => 'Ami 2', 3 => 'Ami 3'];
+        return $liste;
+    }
+
+    /**
      * Get id
      *
      * @return integer

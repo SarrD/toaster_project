@@ -27,6 +27,7 @@ class AmisController extends DefaultController
              'prenom'         => $user->getPrenom(),
              'bio'         => $user->getBio(),
              'id'         => $user->getId(),
+             'amis' => $user->getListeAmis(),
          ));
 
          return $pageAmis;
