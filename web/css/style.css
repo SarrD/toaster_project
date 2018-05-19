@@ -253,8 +253,8 @@ img.profil {
     margin: auto;
     border-radius: 50%;
     border: 1px solid #512DA8;
-    width: 130px;
-    height: 130px;
+    max-width: 130px;
+    max-height: 130px;
 }
 
 div#photo {
