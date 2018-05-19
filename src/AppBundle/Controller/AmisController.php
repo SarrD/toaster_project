@@ -137,7 +137,7 @@ class AmisController extends DefaultController
        $em = $this->getDoctrine()->getManager();
        $etat = "";
         if ($request->getMethod() == "POST") {
-            refuser($pseudo);
+            $this->refuser($pseudo);
         }
           $user = $em->getRepository('AppBundle:Utilisateur')->findOneBy(['id' => $pseudo]);
 
