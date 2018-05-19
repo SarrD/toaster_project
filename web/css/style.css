@@ -443,6 +443,8 @@ span.publication:hover {
     color: #B39DDB;
 }
 
+
+
 textarea {
     border: 1px solid #512DA8;
     border-radius: 10px !important;
@@ -532,3 +534,23 @@ div.datePublication {
 }
 
 /*************************************FIN PUBLICATION******************************************/
+
+/************************************AJOUT*********************************************************/
+
+span.ajout {
+    color: white;
+    font-family: contenu;
+    line-height: 2;
+}
+
+span.ajout:hover {
+    color: #B39DDB;
+}
+
+
+
+/*************************************FIN AJOUT******************************************/
+
+.erreur {
+  text-color :red;
+}

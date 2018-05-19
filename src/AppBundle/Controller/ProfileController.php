@@ -6,6 +6,8 @@ use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use AppBundle\Entity\Utilisateur;
 use AppBundle\Entity\Post;
+use AppBundle\Entity\Connait;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 class ProfileController extends DefaultController
 {
@@ -50,11 +52,31 @@ class ProfileController extends DefaultController
      if($user == null){
        $this->redirectToRoute('profile_not_found');
      }
+      if($this->getUser()->getId() != $pseudo){
+         $relations = $this->getDoctrine()->getManager()->getRepository('AppBundle:Connait');
+         $relation = $relations->findOneBy(['idUtilisateur1' => $pseudo]);
+
+         if($relation == NULL){
+           $relation = $relations->findOneBy(['idUtilisateur2' => $pseudo]);
+         }
+
+         if($relation == NULL){
+           $template_profil = 'publicprofile.html.twig'; //non ami = profil public
+         }else {
+           if ($relation->getEtatRequete()) {
+              $template_profil = 'profile.html.twig'; // ami = profil privé
+           }else{
+              $template_profil = 'publicprofile.html.twig';//requete non validée = profil public
+           }
+         }
+       }else{
+           $template_profil = 'profile.html.twig'; // perso = profil privé
+       }
 
 
      //Creation du tableau de parametres de profil pour le template twig
      //Retour du template rempli
-     return $this->render('profile.html.twig', array(
+     return $this->render($template_profil, array(
             'nom' => $user->getNom(),
             'prenom'         => $user->getPrenom(),
             'bio'         => $user->getBio(),
@@ -63,6 +85,44 @@ class ProfileController extends DefaultController
             'photo' => $user->getPpPath(),
             'monid' => $this->getUser()->getId()
         ));
+   }
+
+   /**
+   * @Route("/ajouter/{pseudo}", name="ajouter")
+   */
+   public function ajouter(Request $request, $pseudo)
+   {
+     $em = $this->getDoctrine()->getManager();
+     $etat = "";
+      if ($request->getMethod() == "POST") {
+
+          $demande = new Connait();
+          $demande->setEtatRequete(false);
+          $demande->setIdUtilisateur1($this->getUser()->getId());
+          $demande->setIdUtilisateur2($pseudo);
+
+          try {
+              $em->persist($demande);
+              $em->flush();
+              $etat = "Demande envoyée";
+            }catch (UniqueConstraintViolationException $e) {
+              $etat = "Vous avez deja ajouté cet utilisateur ou il vous a deja ajouté";
+            }
+          }
+            $user = $em->getRepository('AppBundle:Utilisateur')->findOneBy(['id' => $pseudo]);
+
+        $page =  $this->render('ajout.html.twig', array(
+               'nom' => $user->getNom(),
+               'prenom'         => $user->getPrenom(),
+               'bio'         => $user->getBio(),
+               'id'         => $user->getId(),
+               'listePubli' => $this->getListeAllPost($pseudo),
+               'photo' => $user->getPpPath(),
+               'monid' => $this->getUser()->getId(),
+               'etat' => $etat
+           ));
+
+      return $page;
    }
 
 
