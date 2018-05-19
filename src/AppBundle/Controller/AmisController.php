@@ -117,6 +117,11 @@ class AmisController extends DefaultController
      */
      public function refuser($pseudo)
      {
+
+       if ($this->getUser()->getId() == $pseudo){
+         $this->redirectToRoute('mon_profil');
+       }
+       
        $em =$this->getDoctrine()->getManager();
        $relations = $em->getRepository('AppBundle:Connait');
        $relation = $relations->findOneBy(['idUtilisateur1' => $pseudo]);
@@ -134,6 +139,10 @@ class AmisController extends DefaultController
      */
      public function retirer(Request $request, $pseudo)
      {
+      if ($this->getUser()->getId() == $pseudo){
+        $this->redirectToRoute('mon_profil');
+      }
+
        $em = $this->getDoctrine()->getManager();
        $etat = "";
         if ($request->getMethod() == "POST") {
