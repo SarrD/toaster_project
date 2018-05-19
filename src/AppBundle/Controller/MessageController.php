@@ -84,15 +84,7 @@ if($request->getMethod()=="POST" && $request->get('method')=="getMessage"){
   $query->setParameter('emmet',$user_emmeteur->getId())
         ->setParameter('dest',$user_destinataire->getId())
         ->setParameter('id',$request->get('id_message'));
-  /*
-  $query = $repository->createQueryBuilder()
-      ->select('ud','ue','m')
-      ->from('')
-      ->where('m.id > :id')
-      ->setParameter('id', $request->get('id_message'))
-      ->orderBy('m.id', 'DESC')
-      ->getQuery();
-*/
+
   $last_message = $query->getArrayResult();
 
 $response = array('message' =>$last_message);
