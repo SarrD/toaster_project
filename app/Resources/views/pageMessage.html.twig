@@ -102,8 +102,9 @@ console.log(id_message);
 					data:"method=" + "getMessage" + "&id_message=" + id_message,
 					success : function(data){
 						if(!jQuery.isEmptyObject(data.message)){
-					$('span.tchat').append('<div id="pseudo">'+ data.message[0].nom_emmeteur+" " +data.message[0].prenom_emmeteur+ " | " +	'<span id="message">'+data.message[0].texte+" </span>	</div>" );
-
+					for(var i=0;i<data.message.length ;i ++){
+					$('span.tchat').append('<div id="pseudo">'+ data.message[i].nom_emmeteur+" " +data.message[i].prenom_emmeteur+ " | " +	'<span id="message">'+data.message[i].texte+" </span>	</div>" );
+				}
 			}
 
 

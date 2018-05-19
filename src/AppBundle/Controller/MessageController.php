@@ -38,9 +38,9 @@ public function message(Request $request, $id_destinataire)
       $id_message = $id_message->getId();
 
     // -- Envoi du message en base --
-    if($request->getMethod()=="POST" && $request->get('methode')=="submit"){
-            $params['message'] = $request->get('message');
-            $params['pseudo'] = $request->get('pseudo');
+    if($request->getMethod()=="POST" && $request->get('method')=="submit"){
+            $params['message'] =  $request->get('message');
+            $params['pseudo'] =  $request->get('pseudo');
             $params['heure']=new \DateTime();
             $params['id']=$monId;
 
