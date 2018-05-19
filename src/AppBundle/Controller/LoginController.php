@@ -84,6 +84,7 @@ class LoginController extends DefaultController
               $user->setPrenom($params['prenom']);
               $user->setEmail($params['email']);
               $user->setPassword($params['password']);
+              $user->setPpPath('photoProfil.png');
 
               //$role = $em->getRepository('AppBundle:Role')->find(1); //User
               $user->setIdRole(1); //Role User

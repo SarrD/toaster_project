@@ -1,4 +1,6 @@
-{% extends 'base.html.twig' %}
+
+{% extends 'menu.html.twig' %}
+
 
 {% block title %}Message privée{% endblock %}
 
@@ -8,44 +10,6 @@
 <div class="grid-container.fluid">
 
 
-
-	<div class="grid-x grid-padding-x menu">
-
-		<div class="large-3 medium-3 cell">
-			<h1>*Logo*</h1>
-		</div>
-
-		<div class="large-2 medium-2 cell">
-			<input type="text" class="menu" placeholder="Chercher..." />
-		</div>
-
-		<div class="large-2 medium-2 cell lienAccueil">
-			<a href="{{path('login')}}" class="menu">Accueil</a>
-		</div>
-
-		<div class="large-1 medium-1 cell">
-		<a href="#">
-			<img src="{{ asset('css/img/invitations.png')}}" class="menu" alt="Invitations" />
-		</a>
-		</div>
-
-		<div class="large-1 medium-1 cell">
-		<a href="">
-			<img src="{{ asset('css/img/messages.png')}}" class="menu" alt="Messages"  />
-		</a>
-		</div>
-
-		<div class="large-1 medium-1 cell">
-			<a href="#">
-			<img src="{{ asset('css/img/parametres.png')}}" class="menu" alt="Paramètres" />
-			</a>
-		</div>
-
-		<div class="large-2 medium-2 cell">
-			<a href="{{ path('logout') }}" class="menu">Déconnexion</a>
-		</div>
-
-	</div>
 
 	<div class="grid-x grid-padding-x contenu">
 
@@ -65,7 +29,9 @@
 		</div>
 
 		<div id="msg" class="large-8 medium-8 cell msg">
-			<h1>{{prenom_destinataire | raw}} {{nom_destinataire | raw}}</h1>
+			<h3><a href="{{path('profile',{'pseudo': id_Destinataire}) }}">
+				{{prenom_destinataire}} {{nom_destinataire}}
+			</a></h3>
 
 				<div class="tchat">
 					<span class="tchat">
@@ -98,11 +64,6 @@
 
 
 
-		<div class="grid-x grid-padding-x footer">
-			<div class="large-12 medium-12 cell">
-				<p class="footer">&copy; Aix-Marseille Université</p>
-			</div>
-		</div>
 
 
 </div>

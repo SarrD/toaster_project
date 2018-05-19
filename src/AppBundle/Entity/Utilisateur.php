@@ -211,6 +211,8 @@ class Utilisateur implements UserInterface, \Serializable
         return $this->idRole;
     }
 
+    
+
     /**
      * Get id
      *

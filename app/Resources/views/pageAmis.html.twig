@@ -1,0 +1,156 @@
+{% extends 'menu.html.twig' %}
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/listeAmis.css') }}">
+{% endblock %}
+
+{% block body %}
+
+<div class="grid-container.fluid">
+
+
+
+	<div class="grid-x grid-padding-x contenu">
+
+		<div class="large-12 medium-12 cell">
+			<img src="{{ asset('css/img/' ~ photo) }}" class="profil" alt="Photo de profil" href="{{path('profile',{'pseudo': id}) }}"/>
+		</div>
+
+	</div>
+
+	<div class="grid-x grid-padding-x contenu">
+
+		<div class="large-4 medium-4 cell renseignementProfil">
+			<h1> </h1>
+		</div>
+
+		<div class="large-4 medium-4 cell nomProfil">
+			<h1><a href="{{path('profile',{'pseudo': id}) }}">{{prenom}} {{nom}}</a></h1>
+		</div>
+
+		<div class="large-4 medium-4 cell photoProfil" >
+			<h1> </h1>
+		</div>
+
+	</div>
+
+	<hr class="style"/>
+
+
+
+	<div class="grid-x grid-padding-x contenu" id="photo">
+		<div class="gallery cf">
+
+
+
+<!-- GALERE-->
+
+
+
+  <div>
+  <img src="css/img/photoProfil.png" class="profil" alt="Photo de profil" />
+  </div>
+  <div>
+  <img src="css/img/photoProfil.png" class="profil" alt="Photo de profil" />
+  </div>
+  <div>
+  <img src="css/img/photoProfil.png" class="profil" alt="Photo de profil" />
+  </div>
+  <div>
+  <img src="css/img/photoProfil.png" class="profil" alt="Photo de profil" />
+  </div>
+  <div>
+  <img src="css/img/photoProfil.png" class="profil" alt="Photo de profil" />
+  </div>
+  <div>
+  <img src="css/img/photoProfil.png" class="profil" alt="Photo de profil" />
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+	<div class="grid-x grid-padding-x contenu">
+		<div class="large-12 medium-12 cell people-you-might-know">
+		  <div class="add-people-header">
+		    <h3 >
+		      Amis
+		    </h3>
+		  </div>
+			{% for ami in amis %}
+		  <div class="row add-people-section">
+		    <div class="small-12 medium-6 columns about-people">
+		      <div class="about-people-avatar">
+		        <img class="avatar-image" src="{{ asset('css/img/' ~ ami.photo) }}}" alt="{{ami.photo | raw}}">
+		      </div>
+		      <div class="about-people-author">
+		        <h3><a href="{{path('profile',{'pseudo': ami.id}) }}">
+		          {{ami.prenom | raw}} {{ami.nom | raw}}
+		        </a></h3>
+		      </div>
+		    </div>
+		    <div class="small-12 medium-6 columns add-friend">
+		      <div class="add-friend-action">
+						<a class="btn" href='{{path('ajouter',{'pseudo': personne.id}) }}'>
+ 						 <i class="fa fa-user-plus" aria-hidden="true"></i>
+ 						 Ajouter
+ 					 </a>
+						<button class="btn-suppr">
+						 <i class="fa fa-user-plus" aria-hidden="true"></i>
+						 Retirer de la liste
+					 </button>
+		      </div>
+		    </div>
+		  </div>
+			{% endfor %}
+		</div>
+
+
+
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{asset('js/fonctionsPages.js')}}"></script>
+{% endblock %}

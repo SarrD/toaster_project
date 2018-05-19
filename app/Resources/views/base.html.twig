@@ -11,12 +11,20 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     </head>
     <body>
-        {% block body %}
+      {% block menu %}
+      {% endblock %}
 
-        {% endblock %}
+      {% block body %}
+      {% endblock %}
 
+      {% block javascripts %}
+      {% endblock %}
 
-        {% block javascripts %}
-        {% endblock %}
+      <div class="grid-x grid-padding-x footer">
+        <div class="large-12 medium-12 cell">
+          <p class="footer">&copy; Aix-Marseille Université</p>
+        </div>
+      </div>
+
     </body>
 </html>

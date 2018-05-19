@@ -1,0 +1,43 @@
+{% extends 'menu.html.twig' %}
+
+{% block body %}
+
+	<div class="grid-x grid-padding-x contenu">
+		<div class="large-12 medium-12 cell people-you-might-know">
+		  <div class="add-people-header">
+		    <h3 >
+		      Personnes
+		    </h3>
+		  </div>
+			{% for personne in personnes %}
+		  <div class="row add-people-section">
+		    <div class="small-12 medium-6 columns about-people">
+		      <div class="about-people-avatar">
+		        <img class="avatar-image" src="{{ asset('css/img/' ~ personne.ppPath) }}" alt="{{personne.ppPath | raw}}">
+		      </div>
+		      <div class="about-people-author">
+		        <h3><a href="{{path('profile',{'pseudo': personne.id}) }}">
+		          {{personne.prenom | raw}} {{personne.nom | raw}}
+		        </a></h3>
+		      </div>
+		    </div>
+		    <div class="small-12 medium-6 columns add-friend">
+		      <div class="add-friend-action">
+		        <a class="btn" href='{{path('ajouter',{'pseudo': personne.id}) }}'>
+		          <i class="fa fa-user-plus" aria-hidden="true"></i>
+		          Ajouter
+		        </a>
+						<button class="btn-suppr">
+						 <i class="fa fa-user-plus" aria-hidden="true"></i>
+						 Retirer de la liste
+					 </button>
+		      </div>
+		    </div>
+		  </div>
+			{% endfor %}
+		</div>
+
+
+
+	</div>
+{% endblock %}

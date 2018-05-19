@@ -68,16 +68,19 @@ function closePublication() {
 
 	<div class="grid-x grid-padding-x contenu">
 
-		<div class="large-4 medium-4 cell renseignementProfil" onclick="afficheApropos()">
-			<h1>À propos</h1>
+		<div class="large-4 medium-4 cell renseignementProfil" onclick="">
+			<h1></h1>
 		</div>
 
 		<div class="large-4 medium-4 cell nomProfil">
 			<h1>{{prenom}} {{nom}}</h1>
 		</div>
 
-		<div class="large-4 medium-4 cell photoProfil" onclick="affichePhoto()">
-			<h1>Photo</h1>
+		<div class="large-4 medium-4 cell photoProfil" onclick="">
+      <a class="btn" href='{{path('ajouter',{'pseudo': id}) }}'>
+        <i class="fa fa-user-plus" aria-hidden="true"></i>
+        Ajouter
+      </a>
 		</div>
 
 	</div>
@@ -168,29 +171,6 @@ function closePublication() {
 
 	</div>
 
-   <!-- PUBLICATIONS-->
-
-   <div class="grid-container flex  ">
-     <!-- loop-->
-     	{% for publi in listePubli %}
-     <div class="grid-x grid-margin-x publicadre">
-       		<div class="large-2 medium-2 cell publicateur">
-       		<img src="{{ asset('css/img/' ~ photo) }}" class="profil" alt="Photo de profil" />
-       		</div>
-          <div class="large-2 medium-2 cell publicateur">
-            <h3><a href="{{path('profile',{'pseudo': publi.id}) }}">
-              {{publi.prenom | raw}} {{publi.nom | raw}}
-            </a></h3>
-       		</div>
-       		<div class="large-6 medium-6 cell publication">
-       			{{publi.texte}}
-       		</div>
-       		<div class="large-2 medium-2 cell datePublication">
-       			<h4>{{publi.heurep| date('d-m-Y H:i:s') }}</h4>
-       		</div>
-       	</div>
-<!-- end loop-->
-    {% endfor %}
 
 
 

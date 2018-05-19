@@ -105,6 +105,14 @@ a.contenu {
     margin: 0 auto;
 }
 
+a.barre {
+    color: white;
+    font-size: 1em;
+    display: block;
+    margin: 0 auto;
+    line-height: 2;
+}
+
 a.menu {
     line-height: 330%;
     color: #512DA8;
@@ -112,6 +120,20 @@ a.menu {
 
 img.menu {
     margin-top: 1em;
+}
+
+img.logo {
+    margin-left: 25%;
+    margin-top: 5px;
+    display: block;
+    height: 85%;
+    animation: tourne 10s;
+    animation-iteration-count: infinite;
+}
+
+@keyframes tourne {
+    50% {transform: scaleX(-1);}
+    100% {transform: scaleX(1);}
 }
 
 a:hover {
@@ -150,6 +172,32 @@ p {
     border-color: #651FFF;
 }
 
+/*button suppr*/
+.btn-suppr {
+    background-color: #FC7307;
+    /* background-color: #6200EA; */
+    /*background-color:  #990000;*/
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    font-family: contenu;
+    /*border-color: #B85B14;*/
+    /*border-color: #311B92;*/
+    border-color: #512DA8;
+    /*color: black;*/
+    color: white;
+    border-radius:10px;
+}
+
+.btn-suppr:hover {
+    /*background-color: #B85B14;
+    border-color: #FC7307;*/
+    /*background-color: #311B92;
+    border-color: #6200EA;*/
+    background-color: #512DA8;
+    border-color: #651FFF;
+}
+
 input[type=text], input[type=password], input[type=email], input[type=number] {
     padding: 10px 20px;
     margin: 8px 8px;
@@ -161,6 +209,7 @@ input[type=text], input[type=password], input[type=email], input[type=number] {
     border-radius: 10px;
     font-family: contenu;
     width: 36%;
+    outline: none;
 }
 
 input[type=submit].contenu {
@@ -183,6 +232,7 @@ input[type=text].menu {
     border-radius: 10px;
     font-family: contenu;
     width: 100%;
+    outline: none;
 }
 
 ::placeholder {
@@ -378,4 +428,129 @@ span.tchat > *:nth-child(odd) {
 ::-webkit-scrollbar-thumb {
 	border-radius: 10px;
 	background-color: #9575CD;
+}
+
+
+/************************************PUBLICATION*********************************************************/
+
+span.publication {
+    color: white;
+    font-family: contenu;
+    line-height: 2;
+}
+
+span.publication:hover {
+    color: #B39DDB;
+}
+
+
+
+textarea {
+    border: 1px solid #512DA8;
+    border-radius: 10px !important;
+    font-family: contenu !important;
+    outline: none;
+}
+
+div.publicateur {
+    background-color: #B39DDB;
+}
+
+div.publication {
+    border: 1px solid #B39DDB;
+}
+
+div.publiconteneur {
+  padding-right:auto;
+
+}
+
+div.publicadre{
+  padding:5px;
+  border: 1px solid #512DA8;
+
+}
+
+div.datePublication {
+    background-color: #B39DDB;
+}
+
+/* The Overlay (background) */
+.overlay {
+    /* Height & width depends on how you want to reveal the overlay (see JS below) */
+    height: 0%;
+    width: 100%;
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    background-color: #B39DDB; /* Black fallback color */
+    background-color: rgba(179,157,219, 0.6); /* Black w/opacity */
+	overflow-x: hidden; /* Disable horizontal scroll */
+	overflow-y: hidden;
+    transition: 0.6s; /* 0.5 second transition effect to slide in or slide down the overlay (height or width, depending on reveal) */
+}
+
+/* Position the content inside the overlay */
+.overlay-content {
+    position: relative;
+    top: 25%; /* 25% from the top */
+    width: 100%; /* 100% width */
+    text-align: center; /* Centered text/links */
+    margin-top: 30px; /* 30px top margin to avoid conflict with the close button on smaller screens */
+}
+
+/* The navigation links inside the overlay */
+.overlay a {
+    padding: 8px;
+    text-decoration: none;
+    font-size: 36px;
+    color: #512DA8;
+    display: block; /* Display block instead of inline */
+    transition: 0.3s; /* Transition effects on hover (color) */
+}
+
+/* When you mouse over the navigation links, change their color */
+.overlay a:hover, .overlay a:focus {
+    color: #B39DDB;
+}
+
+/* Position the close button (top right corner) */
+.overlay .closebtn {
+    position: absolute;
+    top: 20px;
+    right: 45px;
+    font-size: 70px;
+}
+
+/* When the height of the screen is less than 450 pixels, change the font-size of the links and position the close button again, so they don't overlap */
+@media screen and (max-height: 450px) {
+    .overlay a {font-size: 20px}
+    .overlay .closebtn {
+        font-size: 40px;
+        top: 15px;
+        right: 35px;
+    }
+}
+
+/*************************************FIN PUBLICATION******************************************/
+
+/************************************AJOUT*********************************************************/
+
+span.ajout {
+    color: white;
+    font-family: contenu;
+    line-height: 2;
+}
+
+span.ajout:hover {
+    color: #B39DDB;
+}
+
+
+
+/*************************************FIN AJOUT******************************************/
+
+.erreur {
+  text-color :red;
 }
