@@ -25,10 +25,16 @@
 
 <div class="grid-x grid-padding-x contenu">
 
-  <div class="large-5 medium-12 cell">
+  <div class="large-5 medium-5 cell">
 
-    <h1>informations supplementaires </h1>
-    <br>
+    <h1>Météo</h1>
+    
+    <!-- Météo -->
+    <a class="weatherwidget-io" href="https://forecast7.com/fr/43d305d37/marseille/" data-label_1="MARSEILLE" data-theme="original" >MARSEILLE</a>
+    <script>
+      !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
+    </script>
+
     {% if connexion_erreur is defined %}
         {% if connexion_erreur != null %}
            <div class="erreur">{{ connexion_erreur.messageKey|trans(connexion_erreur.messageData, 'security') }}</div>
@@ -38,7 +44,7 @@
   </div>
 
 
-<div class="large-7 medium-12 cell ">
+<div class="large-7 medium-7 cell ">
 
   <h1>Inscription</h1>
 
