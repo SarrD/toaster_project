@@ -1,4 +1,6 @@
-{% extends 'base.html.twig' %}
+
+{% extends 'menu.html.twig' %}
+
 
 {% block stylesheets %}
 <link rel="stylesheet" type="text/css" href="{{ asset('css/post.css') }}">
@@ -55,44 +57,6 @@ function closePublication() {
 <div class="grid-container.fluid">
 
 
-
-	<div class="grid-x grid-padding-x menu">
-
-		<div class="large-3 medium-3 cell">
-      <img src="{{ asset('css/img/logo.png')}}" class="logo" alt="Toaster" />
-		</div>
-
-		<div class="large-2 medium-2 cell">
-			<input type="text" class="menu" placeholder="Chercher..." />
-		</div>
-
-		<div class="large-2 medium-2 cell lienAccueil">
-			<a href="{{path('homepage')}}" class="menu">Accueil</a>
-		</div>
-
-		<div class="large-1 medium-1 cell">
-				<a href="#">
-			<img src="{{ asset('css/img/invitations.png')}}" class="menu" alt="Invitations" />
-		</a>
-		</div>
-
-		<div class="large-1 medium-1 cell">
-			<a href="{{path('message',{'id_destinataire': id}) }}">
-			<img src="{{ asset('css/img/messages.png')}}" class="menu" alt="Messages"  />
-		</a>
-		</div>
-
-		<div class="large-1 medium-1 cell">
-			<a href="#">
-			<img src="{{ asset('css/img/parametres.png')}}" class="menu" alt="Paramètres" />
-			</a>
-		</div>
-
-		<div class="large-2 medium-2 cell">
-			<a href="{{path('logout')}}" class="menu">Déconnexion</a>
-		</div>
-
-	</div>
 
 	<div class="grid-x grid-padding-x contenu">
 
