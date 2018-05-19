@@ -174,31 +174,39 @@ function closePublication() {
 
    <!-- PUBLICATIONS-->
 
-   <div class="grid-container flex  ">
-     <!-- loop-->
-     	{% for publi in listePubli %}
-     <div class="grid-x grid-margin-x publicadre">
-       		<div class="large-2 medium-2 cell publicateur">
-       		<img src="{{ asset('css/img/' ~ photo) }}" class="profil" alt="Photo de profil" />
-       		</div>
-          <div class="large-2 medium-2 cell publicateur">
-            <h4 class="publicateur"><a href="{{path('profile',{'pseudo': publi.id}) }}">
-              {{publi.prenom | raw}} {{publi.nom | raw}}
-            </a></h3>
-       		</div>
-       		<div class="large-6 medium-6 cell publication">
-       			{{publi.texte}}
-       		</div>
-       		<div class="large-2 medium-2 cell datePublication">
-       			<h4 class="datePublication"> publié le {{publi.datep| date('d-m-Y') }} à {{publi.heurep| date('H:i:s') }}  </span>
-       		</div>
+	<!-- loop-->
+    {% for publi in listePubli %}
+
+	<div class="grid-x grid-padding-x">
+
+		<div class="large-2 medium-2 cell imagePublicateur">
+       		<img src="{{ asset('css/img/' ~ photo) }}" class="publicateur" alt="Photo de profil" />
        	</div>
-<!-- end loop-->
-    {% endfor %}
+
+		<div class="large-2 medium-2 cell publicateur">
+            <a href="{{path('profile',{'pseudo': publi.id}) }}" class="publicateur">
+          		{{publi.prenom | raw}} {{publi.nom | raw}}
+        	</a>
+   		</div>
+
+		<div class="large-6 medium-6 cell publication">
+       		{{publi.texte}}
+       	</div>
+
+		<div class="large-2 medium-2 cell datePublication">
+       		<p>publié le {{publi.datep| date('d-m-Y') }} à {{publi.heurep| date('H:i:s') }}</p>
+       	</div>
+
+	</div>
+
+	<!-- end loop-->
+    {% endfor %}	   
 
 
 
-  </div>
+
+
+
 
 
 	</div>

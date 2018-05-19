@@ -245,7 +245,7 @@ img.profil {
     display: block;
     margin: auto;
     border-radius: 50%;
-    border: 1px solid #341C09;
+    border: 1px solid #512DA8;
     width: 130px;
     height: 130px;
 }
@@ -458,8 +458,34 @@ div.publicateur {
     background-color: #B39DDB;
 }
 
+div.imagePublicateur {
+    border: 1px solid #B39DDB;
+}
+
+img.publicateur {
+    display: block;
+    margin: auto;
+    border-radius: 50%;
+    border: 1px solid #512DA8;
+    width: 100px;
+    height: 100px;
+}
+
+a.publicateur {
+    color: #651FFF;
+    display: block;
+    margin-top: 15%;
+    text-align: center;
+}
+
+a.publicateur:hover {
+    color: #9575CD;
+}
+
 div.publication {
     border: 1px solid #B39DDB;
+    font-family: contenu;
+    font-size: 1.1em;
 }
 
 div.publiconteneur {
@@ -467,11 +493,13 @@ div.publiconteneur {
 
 }
 
+/*
 div.publicadre{
   padding:5px;
   border: 1px solid #512DA8;
 
 }
+*/
 
 div.datePublication {
     background-color: #B39DDB;
