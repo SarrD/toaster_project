@@ -1,0 +1,188 @@
+
+{% extends 'menu.html.twig' %}
+
+
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/post.css') }}">
+{% endblock %}
+
+{% block body %}
+
+
+
+<script>
+
+/* Open */
+function openPublication() {
+    $("#publication").height("100%");
+}
+
+/* Close */
+function closePublication() {
+     $("#publication").height("0%");
+}
+
+</script>
+
+
+<div id="publication" class="overlay">
+
+		<!-- Button to close the overlay navigation -->
+		<a href="javascript:void(0)" class="closebtn" onclick="closePublication()">&times;</a>
+
+		<!-- Overlay content -->
+		<div class="overlay-content">
+
+		<form method="post">
+			<textarea rows="7" cols="80" name="publication">
+			</textarea>
+
+			<br/>
+      <input type="hidden" name="_target_path" value="{{path('profile',{'pseudo': monid}) }}" />
+			<input type="submit" name="publier" class="btn" value="Publier"/>
+		</form>
+
+		</div>
+
+</div>
+
+
+
+
+
+
+
+
+
+<div class="grid-container.fluid">
+
+
+
+	<div class="grid-x grid-padding-x contenu">
+
+		<div class="large-12 medium-12 cell">
+			<img src="{{ asset('css/img/' ~ photo) }}" class="profil" alt="Photo de profil" />
+		</div>
+
+	</div>
+
+	<div class="grid-x grid-padding-x contenu">
+
+		<div class="large-4 medium-4 cell renseignementProfil" onclick="">
+			<h1></h1>
+		</div>
+
+		<div class="large-4 medium-4 cell nomProfil">
+			<h1>{{prenom}} {{nom}}</h1>
+		</div>
+
+		<div class="large-4 medium-4 cell photoProfil" onclick="">
+      <a class="btn" href='{{path('ajouter',{'pseudo': id}) }}'>
+        <i class="fa fa-user-plus" aria-hidden="true"></i>
+        Ajouter
+      </a>
+		</div>
+
+	</div>
+
+	<hr class="style"/>
+
+	<div class="grid-x grid-padding-x contenu">
+
+		<div class="large-6 medium-6 cell mur">
+			<span onclick="openPublication()" class="publication">Créer une publication</span>
+		</div>
+
+		<div class="large-6 medium-6 cell mur">
+			<a href="{{path('amis',{'pseudo': id}) }}" class="barre">Amis</a>
+		</div>
+
+	</div>
+
+	<hr class="style"/>
+
+	<div class="grid-x grid-padding-x contenu" id="photo">
+		<div class="gallery cf">
+
+
+
+<!-- GALERE-->
+
+
+
+  <div>
+  <img src="css/img/photoProfil.png" class="profil" alt="Photo de profil" />
+  </div>
+  <div>
+  <img src="css/img/photoProfil.png" class="profil" alt="Photo de profil" />
+  </div>
+  <div>
+  <img src="css/img/photoProfil.png" class="profil" alt="Photo de profil" />
+  </div>
+  <div>
+  <img src="css/img/photoProfil.png" class="profil" alt="Photo de profil" />
+  </div>
+  <div>
+  <img src="css/img/photoProfil.png" class="profil" alt="Photo de profil" />
+  </div>
+  <div>
+  <img src="css/img/photoProfil.png" class="profil" alt="Photo de profil" />
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+		</div>
+	</div>
+
+	<div class="grid-x grid-padding-x contenu" id="Apropos">
+
+		<div class="tab">
+  			<button class="tablinks" onclick="openCity(event, 'London')"><h2>Informations générales et coordonnées</h2></button>
+  			<button class="tablinks" onclick="openCity(event, 'Paris')"><h2>Emploi et scolarité</h2></button>
+  			<button class="tablinks" onclick="openCity(event, 'Tokyo')"><h2>Évènements marquants</h2></button>
+		</div>
+
+		<div id="London" class="tabcontent">
+  			<h2>Coordonnées</h2>
+			  <p>tel</p>
+			  <p>email</p>
+		</div>
+
+		<div id="Paris" class="tabcontent">
+  			<h2>Emploi</h2>
+			  <p>chômage</p>
+			 <h2>Scolarité</h2>
+			 <p>{{bio}}</p>
+		</div>
+
+		<div id="Tokyo" class="tabcontent">
+  			<h2>Évènements</h2>
+  			<p>ecrire</p>
+		</div>
+
+	</div>
+
+
+
+
+  </div>
+
+
+	</div>
+
+
+</div>
+{% endblock %}
+
+{% block javascripts %}
+	<script src="{{asset('js/fonctionsPages.js')}}"></script>
+{% endblock %}

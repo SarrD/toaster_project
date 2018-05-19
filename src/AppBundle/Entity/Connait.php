@@ -53,8 +53,8 @@ class Connait
      */
     public function setEtatRequete($etatRequete)
     {
-        $this->etatRequete = $etatRequete;
-    
+        $this->etatRequete = $etatRequete; //True si acceptée
+
         return $this;
     }
 
@@ -78,7 +78,7 @@ class Connait
     public function setIdUtilisateur1($idUtilisateur1)
     {
         $this->idUtilisateur1 = $idUtilisateur1;
-    
+
         return $this;
     }
 
@@ -102,7 +102,7 @@ class Connait
     public function setIdUtilisateur2($idUtilisateur2)
     {
         $this->idUtilisateur2 = $idUtilisateur2;
-    
+
         return $this;
     }
 

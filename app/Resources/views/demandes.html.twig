@@ -6,7 +6,7 @@
 		<div class="large-12 medium-12 cell people-you-might-know">
 		  <div class="add-people-header">
 		    <h3 >
-		      Personnes
+		      Demandes
 		    </h3>
 		  </div>
 			{% for personne in personnes %}
@@ -23,14 +23,14 @@
 		    </div>
 		    <div class="small-12 medium-6 columns add-friend">
 		      <div class="add-friend-action">
-		        <a class="btn" href='{{path('ajouter',{'pseudo': personne.id}) }}'>
+		        <a class="btn" href='{{path('accepter',{'pseudo': personne.id}) }}'>
 		          <i class="fa fa-user-plus" aria-hidden="true"></i>
-		          Ajouter
+		          Accepter
 		        </a>
-						<button class="btn-suppr">
-						 <i class="fa fa-user-plus" aria-hidden="true"></i>
-						 Retirer de la liste
-					 </button>
+						<a class="btn" href='{{path('refuser',{'pseudo': personne.id}) }}'>
+							<i class="fa fa-user-plus" aria-hidden="true"></i>
+							Refuser
+						</a>
 		      </div>
 		    </div>
 		  </div>
