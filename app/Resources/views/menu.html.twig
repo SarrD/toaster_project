@@ -1,5 +1,9 @@
 {% extends 'base.html.twig' %}
 
+{% block stylesheets %}
+<link rel="stylesheet" type="text/css" href="{{ asset('css/listeAmis.css') }}">
+{% endblock %}
+
 {% block menu %}
       <div class="grid-x grid-padding-x menu">
 
@@ -8,15 +12,14 @@
         </div>
 
         <div class="large-4 medium-4 cell">
-          <form action="" method="post" class="recherche">
+          <form action="{{path('recherche')}}" method="get" class="recherche">
             <div class="grid-container">
               <div class="grid-x grid-margin-x">
               <div class="small-6 cell">
                 <input type="text" class="menu" name="recherche" placeholder="Chercher..." />
               </div>
               <div class="small-6 cell">
-                <input type="hidden" name="_target_path" value="" />
-                <input type="submit" name="bouton-recherche" class="btn" value="Recherche">
+                <input type="submit"  class="btn" value="Recherche">
               </div>
             </div>
           </div>

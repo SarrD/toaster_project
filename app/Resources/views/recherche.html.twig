@@ -13,11 +13,11 @@
 		  <div class="row add-people-section">
 		    <div class="small-12 medium-6 columns about-people">
 		      <div class="about-people-avatar">
-		        <img class="avatar-image" src="{{ asset('css/img/' ~ ami.photo) }}}" alt="{{ami.photo | raw}}">
+		        <img class="avatar-image" src="{{ asset('css/img/' ~ personne.ppPath) }}" alt="{{personne.ppPath | raw}}">
 		      </div>
 		      <div class="about-people-author">
-		        <h3><a href="{{path('profile',{'pseudo': ami.id}) }}">
-		          {{ami.prenom | raw}} {{ami.nom | raw}}
+		        <h3><a href="{{path('profile',{'pseudo': personne.id}) }}">
+		          {{personne.prenom | raw}} {{personne.nom | raw}}
 		        </a></h3>
 		      </div>
 		    </div>
