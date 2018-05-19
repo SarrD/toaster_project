@@ -111,34 +111,48 @@
 {% block javascripts %}
 
 <script type="text/javascript">
+
+var id_message = "{{id_message}}";
+console.log(id_message);
+
 	$('#envoyer').click(function(e){
 		e.preventDefault();
 		var pseudo ="{{prenom | raw}} {{nom | raw}} | "; // on sécurise les données
 		var message = $('#usermsg').val();
 		$.post("{{path('message',{'id_destinataire': id_destinataire})}}",
 	     {
+				 	method:"submit",
 	         pseudo: pseudo,
 	        message: message
 	     },
 	     function(data, status){
-	         alert("Le message vient d'être envoyer sur la base ");
+	         alert("Le message vient d'être envoyer sur la base " );
+					 id_message =data.id_message;
 	     });
 	$('span.tchat').append("<div>"+pseudo+"<span>"+message+"</span>"+"</div>");
 	});
+
+
 	function charger(){
 		setInterval(function(){
 			$.ajax({
 					url : "{{path('message',{'id_destinataire': id_destinataire})}}", // on passe l'id le plus récent au fichier de chargement
-					type : "GET",
-					success : function(html){
-						{% for message in old_messages %}
-						$('span.tchat').append("<div id='pseudo'>"+"{{message.nom_emmeteur | raw}} {{message.prenom_emmeteur | raw}}  | "+"<span id='message'>"+"{{message.texte | raw}}"+"</span>"+"</div>");
-							{% endfor %}
+					type : "POST",
+					data:"method=" + "getMessage" + "&id_message=" + id_message,
+					success : function(data){
+						if(!jQuery.isEmptyObject(data.message)){
+					$('span.tchat').append('<div id="pseudo">'+"{{nom | raw}} {{prenom | raw}}  |"+	'<span id="message">'+data.message[0].texte+" </span>	</div>" );
+
+			}
+
+
 					}
+
 			});
-		}, 3000);
+		}, 5000);
 	}
-//charger();
+charger();
+
 </script>
 
 {% endblock %}
