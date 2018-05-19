@@ -182,7 +182,7 @@ function closePublication() {
        		<img src="{{ asset('css/img/' ~ photo) }}" class="profil" alt="Photo de profil" />
        		</div>
           <div class="large-2 medium-2 cell publicateur">
-            <h3><a href="{{path('profile',{'pseudo': publi.id}) }}">
+            <h4 class="publicateur"><a href="{{path('profile',{'pseudo': publi.id}) }}">
               {{publi.prenom | raw}} {{publi.nom | raw}}
             </a></h3>
        		</div>
@@ -190,7 +190,7 @@ function closePublication() {
        			{{publi.texte}}
        		</div>
        		<div class="large-2 medium-2 cell datePublication">
-       			<h4>{{publi.heurep| date('d-m-Y H:i:s') }}</h4>
+       			<h4 class="datePublication"> publié le {{publi.datep| date('d-m-Y') }} à {{publi.heurep| date('H:i:s') }}  </span>
        		</div>
        	</div>
 <!-- end loop-->
