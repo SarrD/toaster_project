@@ -151,7 +151,7 @@ p {
     /*background-color: #FC7307;*/
     /*background-color: #6200EA;*/
     background-color: #651FFF;
-    padding: 10px 20px;
+    padding: 9px 20px;
     font-size: 16px;
     cursor: pointer;
     font-family: contenu;
@@ -223,7 +223,7 @@ input[type=submit].contenu {
 
 input[type=text].menu {
     padding: 10px 20px;
-    margin: 8px 8px;
+    margin: 8px 0px;
     display: inline-block;
     /*border: 1px solid #B85B14;*/
     /*border: 1px solid #311B92;*/
@@ -231,7 +231,7 @@ input[type=text].menu {
     box-sizing: border-box;
     border-radius: 10px;
     font-family: contenu;
-    width: 100%;
+    width: 55%;
     outline: none;
 }
 

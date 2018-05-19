@@ -7,26 +7,18 @@
 {% block menu %}
       <div class="grid-x grid-padding-x menu">
 
-        <div class="large-1 medium-1 cell">
+        <div class="large-2 medium-2 cell">
           <img src="{{ asset('css/img/logo.png')}}" class="logo" alt="Toaster" />
         </div>
 
-        <div class="large-4 medium-4 cell">
+        <div class="large-3 medium-3 cell">
           <form action="{{path('recherche')}}" method="get" class="recherche">
-            <div class="grid-container">
-              <div class="grid-x grid-margin-x">
-              <div class="small-6 cell">
-                <input type="text" class="menu" name="recherche" placeholder="Chercher..." />
-              </div>
-              <div class="small-6 cell">
-                <input type="submit"  class="btn" value="Recherche">
-              </div>
-            </div>
-          </div>
+            <input type="text" class="menu" name="recherche" placeholder="Chercher..." />
+            <input type="submit"  class="btn" value="Recherche">
           </form>
         </div>
 
-        <div class="large-1 medium-1 cell lienAccueil">
+        <div class="large-2 medium-2 cell lienAccueil">
           <a href="{{path('homepage')}}" class="menu">Accueil</a>
         </div>
 
@@ -48,7 +40,7 @@
           </a>
         </div>
 
-        <div class="large-1 medium-1 cell">
+        <div class="large-2 medium-2 cell">
           <a href="{{path('logout')}}" class="menu">Déconnexion</a>
         </div>
 
