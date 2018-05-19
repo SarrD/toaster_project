@@ -29,7 +29,7 @@
 		</div>
 
 		<div id="msg" class="large-8 medium-8 cell msg">
-			<h3><a href="{{path('profile',{'pseudo': id_Destinataire}) }}">
+			<h3><a href="{{path('profile',{'pseudo': id}) }}">
 				{{prenom_destinataire}} {{nom_destinataire}}
 			</a></h3>
 
@@ -47,7 +47,7 @@
 					</span>
 				</div>
 
-				<form name="message" action="{{path('message',{'id_destinataire': id_destinataire}) }}" method="post">
+				<form name="message" action="{{path('message',{'id_destinataire': id}) }}" method="post">
         			<input name="usermsg" type="text" id="usermsg"  placeholder="Saisissez votre message..." />
         			<input class="btn" name="envoyer" type="submit"  id="envoyer" value="Envoyer"/>
 				</form>
@@ -80,7 +80,7 @@ console.log(id_message);
 		e.preventDefault();
 		var pseudo ="{{prenom | raw}} {{nom | raw}} | "; // on sécurise les données
 		var message = $('#usermsg').val();
-		$.post("{{path('message',{'id_destinataire': id_destinataire})}}",
+		$.post("{{path('message',{'id_destinataire': id})}}",
 	     {
 				 	method:"submit",
 	         pseudo: pseudo,
@@ -97,12 +97,12 @@ console.log(id_message);
 	function charger(){
 		setInterval(function(){
 			$.ajax({
-					url : "{{path('message',{'id_destinataire': id_destinataire})}}", // on passe l'id le plus récent au fichier de chargement
+					url : "{{path('message',{'id_destinataire': id})}}", // on passe l'id le plus récent au fichier de chargement
 					type : "POST",
 					data:"method=" + "getMessage" + "&id_message=" + id_message,
 					success : function(data){
 						if(!jQuery.isEmptyObject(data.message)){
-					$('span.tchat').append('<div id="pseudo">'+"{{nom | raw}} {{prenom | raw}}  |"+	'<span id="message">'+data.message[0].texte+" </span>	</div>" );
+					$('span.tchat').append('<div id="pseudo">'+ data.message[0].nom_emmeteur+" " +data.message[0].prenom_emmeteur+ " | " +	'<span id="message">'+data.message[0].texte+" </span>	</div>" );
 
 			}
 

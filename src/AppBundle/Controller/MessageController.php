@@ -38,10 +38,9 @@ public function message(Request $request, $id_destinataire)
       $id_message = $id_message->getId();
 
     // -- Envoi du message en base --
-    if($request->getMethod()=="POST" && $_POST['method']=="submit"){
-            $params['message'] = $_POST['message'];
-            $params['pseudo'] = $_POST['pseudo'];
-            $params['date']= date("Y-m-d H:i:s");
+    if($request->getMethod()=="POST" && $request->get('methode')=="submit"){
+            $params['message'] = $request->get('message');
+            $params['pseudo'] = $request->get('pseudo');
             $params['heure']=new \DateTime();
             $params['id']=$monId;
 
@@ -68,17 +67,32 @@ public function message(Request $request, $id_destinataire)
 $old_messages_txt =$this->getMessages($user_emmeteur,$user_destinataire);
 
 
-if($request->getMethod()=="POST" && $_POST['method']=="getMessage"){
+if($request->getMethod()=="POST" && $request->get('method')=="getMessage"){
       $repository = $this->getDoctrine()
       ->getRepository(Message::class);
   // createQueryBuilder() automatically selects FROM AppBundle:Message
   // and aliases it to "m"
-  $query = $repository->createQueryBuilder('m')
+
+  $query = $this->getDoctrine()->getManager()
+  ->createQuery("SELECT ue.nom nom_emmeteur, ue.prenom prenom_emmeteur, m.texte
+                FROM 'AppBundle:Utilisateur' ue, 'AppBundle:Utilisateur' ud, 'AppBundle:Message' m
+                WHERE m.idEmmeteur = ue.id
+                AND m.idDestinataire=ud.id
+                AND ((ud.id=:dest AND ue.id=:emmet) OR (ud.id=:emmet AND ue.id=:dest))
+                AND m.id > :id
+                ORDER BY m.id DESC");
+  $query->setParameter('emmet',$user_emmeteur->getId())
+        ->setParameter('dest',$user_destinataire->getId())
+        ->setParameter('id',$request->get('id_message'));
+  /*
+  $query = $repository->createQueryBuilder()
+      ->select('ud','ue','m')
+      ->from('')
       ->where('m.id > :id')
-      ->setParameter('id', $_POST['id_message'])
+      ->setParameter('id', $request->get('id_message'))
       ->orderBy('m.id', 'DESC')
       ->getQuery();
-
+*/
   $last_message = $query->getArrayResult();
 
 $response = array('message' =>$last_message);
@@ -95,7 +109,7 @@ return new JsonResponse($response);
                       'prenom' => $user_emmeteur->getPrenom(),
                       'nom_destinataire' => $user_destinataire->getNom(),
                       'prenom_destinataire' => $user_destinataire->getPrenom(),
-                      'id_destinataire' => $user_destinataire->getId(),
+                      'id' => $user_destinataire->getId(),
                       'old_messages' => $old_messages_txt,
                       'id_message' => $id_message,
                       //'message' => $last_message,
