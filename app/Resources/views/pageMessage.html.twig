@@ -73,8 +73,9 @@
 
 <script type="text/javascript">
 
-var id_message = "{{id_message}}";
-console.log(id_message);
+
+var id_message =0;
+
 
 	$('#envoyer').click(function(e){
 		e.preventDefault();
@@ -104,9 +105,12 @@ console.log(id_message);
 						if(!jQuery.isEmptyObject(data.message)){
 					for(var i=0;i<data.message.length ;i ++){
 					$('span.tchat').append('<div id="pseudo">'+ data.message[i].nom_emmeteur+" " +data.message[i].prenom_emmeteur+ " | " +	'<span id="message">'+data.message[i].texte+" </span>	</div>" );
+					id_message=data.id_message;
 				}
-			}
 
+
+			}
+	//console.log(data.id_message);
 
 					}
 

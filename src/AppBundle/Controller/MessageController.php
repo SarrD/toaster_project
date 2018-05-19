@@ -22,7 +22,7 @@ public function message(Request $request, $id_destinataire)
 {
 
     //Recuperation  des donnee de formulaire dans un tableau associatif "$params"
-
+$id_message =null;
     $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Utilisateur');
       $monId = $this->getUser()->getId();
 
@@ -35,7 +35,7 @@ public function message(Request $request, $id_destinataire)
 
         $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Message');
       $id_message = $repo->findOneBy(array(),array('id'=>'DESC'));
-      $id_message = $id_message->getId();
+      
 
     // -- Envoi du message en base --
     if($request->getMethod()=="POST" && $request->get('method')=="submit"){
@@ -86,8 +86,13 @@ if($request->getMethod()=="POST" && $request->get('method')=="getMessage"){
         ->setParameter('id',$request->get('id_message'));
 
   $last_message = $query->getArrayResult();
+  $id_message = $repo->findOneBy(array(),array('id'=>'DESC'));
+  $id_message = $id_message->getId();
 
-$response = array('message' =>$last_message);
+
+$response = array('message' =>$last_message,
+  'id_message'=>$id_message
+);
 
 
 return new JsonResponse($response);
