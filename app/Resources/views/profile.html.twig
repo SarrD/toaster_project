@@ -87,7 +87,11 @@ function closePublication() {
 	<div class="grid-x grid-padding-x contenu">
 
 		<div class="large-6 medium-6 cell mur">
+      {% if id == monid %}
 			<span onclick="openPublication()" class="publication">Créer une publication</span>
+      {% else %}
+      <span  class="publication"></span>
+      {% endif %}
 		</div>
 
 		<div class="large-6 medium-6 cell mur">

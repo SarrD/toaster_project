@@ -92,6 +92,11 @@ class ProfileController extends DefaultController
    */
    public function ajouter(Request $request, $pseudo)
    {
+     if($this->getUser()->getId() == $pseudo){
+       return $this->redirectToRoute('mon_profil');
+     }
+
+
      $em = $this->getDoctrine()->getManager();
      $etat = "";
       if ($request->getMethod() == "POST") {
@@ -126,7 +131,7 @@ class ProfileController extends DefaultController
    }
 
 
-  
+
 
 
    /**
