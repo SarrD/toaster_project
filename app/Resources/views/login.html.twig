@@ -31,7 +31,7 @@
     <br>
     {% if connexion_erreur is defined %}
         {% if connexion_erreur != null %}
-           <div class = 'erreur'>{{ connexion_erreur.messageKey|trans(connexion_erreur.messageData, 'security') }}</div>
+           <div class="erreur">{{ connexion_erreur.messageKey|trans(connexion_erreur.messageData, 'security') }}</div>
         {% endif %}
     {% endif %}
 
@@ -59,7 +59,7 @@
 
 {% if inscription_erreur is defined %}
     {% if inscription_erreur != null %}
-       <div class = 'erreur'>{{inscription_erreur}}</div>
+       <div class="erreur">{{inscription_erreur}}</div>
     {% endif %}
 {% endif %}
 

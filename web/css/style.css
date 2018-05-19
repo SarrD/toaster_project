@@ -581,6 +581,6 @@ span.ajout:hover {
 
 /*************************************FIN AJOUT******************************************/
 
-.erreur {
-  text-color :red;
+div.erreur {
+  color :red;
 }
