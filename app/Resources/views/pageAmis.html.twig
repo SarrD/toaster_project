@@ -96,6 +96,7 @@
 		      Amis
 		    </h3>
 		  </div>
+			{% if not amis is empty %}
 			{% for ami in amis %}
 		  <div class="row add-people-section">
 		    <div class="small-12 medium-6 columns about-people">
@@ -110,18 +111,19 @@
 		    </div>
 		    <div class="small-12 medium-6 columns add-friend">
 		      <div class="add-friend-action">
-						<a class="btn" href='{{path('ajouter',{'pseudo': personne.id}) }}'>
+						<a class="btn" href='{{path('ajouter',{'pseudo': ami.id}) }}'>
  						 <i class="fa fa-user-plus" aria-hidden="true"></i>
  						 Ajouter
  					 </a>
-						<button class="btn-suppr">
+					 <a class="btn" href='{{path('refuser',{'pseudo': ami.id}) }}'>
 						 <i class="fa fa-user-plus" aria-hidden="true"></i>
 						 Retirer de la liste
-					 </button>
+					 </a>
 		      </div>
 		    </div>
 		  </div>
 			{% endfor %}
+			{% endif %}
 		</div>
 
 

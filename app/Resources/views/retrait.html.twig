@@ -1,0 +1,39 @@
+{% extends 'profile.html.twig' %}
+{% block body %}
+
+<script type="text/javascript">
+
+/* Open */
+function openAjout() {
+    $("#ajout").height("100%");
+}
+
+/* Close */
+function closeAjout() {
+     $("#ajout").height("0%");
+}
+
+window.onload = openAjout();
+</script>
+
+
+<div>
+
+		<form class="msg-ajout"  method="post">
+		<h2>	Voulez vous vraiment retirer {{prenom}} {{nom}} de votre liste d'amis? </h3>
+
+      <br>
+
+    <h2 class = 'erreur'>  {{etat}} </h2>
+
+			<br/>
+      <input type="hidden" name="_target_path" value="{{path('refuser',{'pseudo': id}) }}" />
+			<input type="submit" name="publier" class="btn" value="Confirmer"/>
+      <a href="{{path('profile',{'pseudo': id}) }}" class="btn-suppr">Annuler</a>
+		</form>
+
+</div>
+
+
+
+{% endblock %}

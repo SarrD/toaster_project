@@ -120,10 +120,36 @@ class AmisController extends DefaultController
        $em =$this->getDoctrine()->getManager();
        $relations = $em->getRepository('AppBundle:Connait');
        $relation = $relations->findOneBy(['idUtilisateur1' => $pseudo]);
+       if($relation == NULL){
+         $relation = $relations->findOneBy(['idUtilisateur2' => $pseudo]);
+       }
        $em->remove($relation);
        $em->flush();
 
       return $this->redirectToRoute('profile', array('pseudo' => $pseudo));
+     }
+
+     /**
+     * @Route("/retirer/{pseudo}", name="retirer")
+     */
+     public function retirer(Request $request, $pseudo)
+     {
+       $em = $this->getDoctrine()->getManager();
+       $etat = "";
+        if ($request->getMethod() == "POST") {
+            refuser($pseudo);
+        }
+          $user = $em->getRepository('AppBundle:Utilisateur')->findOneBy(['id' => $pseudo]);
+
+          $page =  $this->render('retrait.html.twig', array(
+                 'nom' => $user->getNom(),
+                 'prenom'         => $user->getPrenom(),
+                 'id'         => $user->getId(),
+                 'monid' => $this->getUser()->getId(),
+                 'etat' => $etat
+             ));
+
+        return $page;
      }
 
 }
