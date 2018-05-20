@@ -1,0 +1,10 @@
+{# app/Resources/views/product/new.html.twig #}
+<h1>Ajouter une personne avec une photo</h1>
+
+{{ form_start(form) }}
+    {# ... #}
+
+    {{ form_row(form.ppPath) }}
+      <input type="submit" name="connexion" class="btn" value="Connexion"/>
+{{ form_end(form) }}
+<a href="{{ asset('css/img/' ~ user.ppPath) }}">View brochure (PDF)</a>

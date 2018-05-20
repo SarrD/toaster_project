@@ -8,13 +8,13 @@ use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 
-class ProductType extends AbstractType
+class UtilisateurType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
             // ...
-            ->add('ppPath', FileType::class, array('label' => 'Image(JPG)'))
+            ->add('ppPath', FileType::class, array('label' => 'Image (JPG/JPEG/PNG file)'))
             // ...
         ;
     }
@@ -22,7 +22,7 @@ class ProductType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults(array(
-            'data_class' =>Utilisateur::class,
+            'data_class' => Utilisateur::class,
         ));
     }
 }
