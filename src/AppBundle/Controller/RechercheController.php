@@ -18,9 +18,10 @@ class RechercheController extends DefaultController
        if ($request->getMethod() == "GET") {
 
          $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Utilisateur');
-         $noms = $repo->findBy(['nom' => $request->get('recherche')]);
-         $prenoms = $repo->findBy(['prenom' => $request->get('recherche')]);
+         $noms = $repo->findBy(['nom' => $request->get('recherche'), 'idRole' => 1]);
+         $prenoms = $repo->findBy(['prenom' => $request->get('recherche'), 'idRole' => 1]);
          $tab_personnes = array_merge($noms, $prenoms);
+         $tab_personnes = array_unique ($tab_personnes);
 
          $pageRecherche = $this->render('recherche.html.twig', array(
                 'personnes' => $tab_personnes,

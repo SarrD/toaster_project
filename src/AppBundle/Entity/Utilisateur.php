@@ -211,7 +211,7 @@ class Utilisateur implements UserInterface, \Serializable
         return $this->idRole;
     }
 
-    
+
 
     /**
      * Get id
@@ -329,5 +329,10 @@ class Utilisateur implements UserInterface, \Serializable
     public function eraseCredentials()
     {
         // TODO: Implement eraseCredentials() method.
+    }
+
+    public function __toString()
+    {
+        return strval($this->id);
     }
 }
