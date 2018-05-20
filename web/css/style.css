@@ -5,6 +5,10 @@ body {
     /*background-color: #EDE7F6 !important;*/
 }
 
+div.meteo {
+    background-color: rgba(179, 157, 219, 0.3);
+}
+
 div.menu {
     /*background-color: #236AB9;*/
     /*background-color: #673AB7;*/
