@@ -601,3 +601,22 @@ div.erreur {
   border-bottom-left-radius: 20px;
   box-shadow: 1px 5px 50px red;
 }
+
+
+/*********************************************PAGE AMIS********************************************/
+
+a.btn {
+    background-color: #651FFF;
+    padding: 9px 20px;
+    font-size: 1.7em;
+    cursor: pointer;
+    font-family: contenu;
+    border-color: #512DA8;
+    color: white;
+    border-radius:10px;
+    display: block;
+    text-align: center;
+    height: 100%;
+}
+
+/**********************************************FIN PAGE AMIS***********************************************/
