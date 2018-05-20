@@ -176,13 +176,12 @@ function closePublication() {
    <!-- PUBLICATIONS-->
 
 
-   {% if listePubli is empty %}
-         <div id="post_push" class="grid-x grid-padding-x"></div>
-       {% endif %}
-	<!-- loop-->
 
+
+<div id="post_push" class="conteneurPost ">
+  <!-- loop-->
     {% for publi in listePubli %}
-      <div id="post_push" class="grid-x grid-padding-x">
+      <div  class="grid-x grid-padding-x cadrePost">
 
 
 
@@ -210,7 +209,7 @@ function closePublication() {
 	<!-- end loop-->
     {% endfor %}
 
-
+</div>
 
 
 
@@ -239,10 +238,10 @@ function closePublication() {
 	     },
 	     function(data, status){
 	         //alert("Le message vient d'être envoyer sur la base " );
-           $('#post_push').append('<div class="large-2 medium-2 cell imagePublicateur"><img src="{{ asset('css/img/' ~ photo) }}" class="publicateur" alt="Photo de profil" /></div>'
-            +'<div class="large-2 medium-2 cell publicateur"><a href="{{path('profile',{'pseudo':monid }) }}" class="publicateur">'+ data.prenom+ data.nom +'</a></div>'
+           $('#post_push').append('<div  class="grid-x grid-padding-x cadrePost"><div class="large-2 medium-2 cell imagePublicateur"><img src="{{ asset('css/img/' ~ photo) }}" class="publicateur" alt="Photo de profil" /></div>'
+            +'<div class="large-2 medium-2 cell publicateur"><a href="{{path('profile',{'pseudo':monid }) }}" class="publicateur">'+ data.prenom+' '+data.nom +'</a></div>'
           +'	<div class="large-6 medium-6 cell publication">'+message+'</div>'
-          +'<div class="large-2 medium-2 cell datePublication"><p>publié le '+data.date+' à '+data.heure+'</p></div>'
+          +'<div class="large-2 medium-2 cell datePublication"><p>publié le '+data.date+' à '+data.heure+'</p></div></div>'
           );
 
 	     });
