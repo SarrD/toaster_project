@@ -91,17 +91,17 @@
 	{% if not amis is empty %}
 	{% for ami in amis %}
 
-	<div class="large-2 medium-2 cell imagePublicateur">
+	<div class="large-3 medium-3 cell imagePublicateur">
     <img class="publicateur" src="{{ asset('css/img/' ~ ami.photo) }}" alt="{{ami.photo | raw}}">
   </div>
 
-	<div class="large-3 medium-3 cell publicateur">
-    <a href="{{path('profile',{'pseudo': ami.id}) }}" class="publicateur">
+	<div class="large-6 medium-6 cell publicateur">
+    <a href="{{path('profile',{'pseudo': ami.id}) }}" class="amis">
 		  {{ami.prenom | raw}} {{ami.nom | raw}}
 		</a>
   </div>
 
-	<div class="large-7 medium-7 cell imagePublicateur">
+	<div class="large-3 medium-3 cell imagePublicateur">
 		{% if id != monid %}
 			<a class="btn" href='{{path('ajouter',{'pseudo': ami.id}) }}'>Ajouter</a>
 		{% endif %}

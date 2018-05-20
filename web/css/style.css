@@ -467,6 +467,7 @@ textarea {
 
 div.publicateur {
     background-color: #B39DDB;
+    border: 1px solid #9575CD;
 }
 
 div.imagePublicateur {
@@ -614,15 +615,31 @@ div.erreur {
 a.btn {
     background-color: #651FFF;
     padding: 9px 20px;
-    font-size: 1.7em;
+    font-size: 1em;
     cursor: pointer;
     font-family: contenu;
-    border-color: #512DA8;
+    border: 4px solid #512DA8;
     color: white;
     border-radius:10px;
     display: block;
     text-align: center;
-    height: 100%;
+    max-height: 50%;
+    max-width: 50%;
+    margin: 0 auto;
+    margin-top: 20px;
+    line-height: 1;
+}
+
+a.amis {
+    color: #651FFF;
+    display: block;
+    margin-top: 3%;
+    text-align: center;
+    font-size: 1.7em;
+}
+
+a.amis:hover {
+    color: #9575CD;
 }
 
 /**********************************************FIN PAGE AMIS***********************************************/
