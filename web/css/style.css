@@ -643,3 +643,30 @@ a.amis:hover {
 }
 
 /**********************************************FIN PAGE AMIS***********************************************/
+
+/********************************************PAGE RECHERCHE******************************************************/
+
+a.btn- {
+    background-color: #B39DDB;
+    padding: 9px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    font-family: contenu;
+    border: 4px solid #512DA8;
+    color: white;
+    border-radius:10px;
+    display: block;
+    text-align: center;
+    max-height: 50%;
+    max-width: 50%;
+    margin: 0 auto;
+    margin-top: 20px;
+    line-height: 1;
+}
+
+a.btn-:hover {
+    background-color: #512DA8;
+    border: 4px solid #651FFF;
+}
+
+/***************************************FIN PAGE RECHERCHE************************************************/
