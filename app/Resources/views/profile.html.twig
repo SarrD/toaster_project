@@ -34,17 +34,18 @@ function closePublication() {
 		<div class="overlay-content">
 
 		<form method="post">
-			<textarea rows="7" cols="80" name="publication">
+			<textarea  rows="7" cols="80" name="publication" id="publication">
 			</textarea>
 
 			<br/>
       <input type="hidden" name="_target_path" value="{{path('profile',{'pseudo': monid}) }}" />
-			<input type="submit" name="publier" class="btn" value="Publier"/>
+			<input  id="publier" type="submit" name="publier" class="btn" value="Publier"/>
 		</form>
 
 		</div>
 
 </div>
+
 
 
 
@@ -177,7 +178,7 @@ function closePublication() {
 	<!-- loop-->
     {% for publi in listePubli %}
 
-	<div class="grid-x grid-padding-x">
+	<div id="post_push" class="grid-x grid-padding-x">
 
 		<div class="large-2 medium-2 cell imagePublicateur">
        		<img src="{{ asset('css/img/' ~ photo) }}" class="publicateur" alt="Photo de profil" />
@@ -200,7 +201,7 @@ function closePublication() {
 	</div>
 
 	<!-- end loop-->
-    {% endfor %}	   
+    {% endfor %}
 
 
 
@@ -216,5 +217,33 @@ function closePublication() {
 {% endblock %}
 
 {% block javascripts %}
+
+
+<script type="text/javascript">
+
+	$('#publier').click(function(e){
+		e.preventDefault();
+		var pseudo ="{{prenom | raw}} {{nom | raw}} | "; // on sécurise les données
+		var message = $('textarea#publication').val();
+    closePublication();
+		$.post("{{path('profile',{'pseudo': monid})}}",
+	     {
+	        publication: message
+	     },
+	     function(data, status){
+	         alert("Le message vient d'être envoyer sur la base " );
+           $('#post_push').append('<div class="large-2 medium-2 cell imagePublicateur"><img src="{{ asset('css/img/' ~ photo) }}" class="publicateur" alt="Photo de profil" /></div>'
+            +'<div class="large-2 medium-2 cell publicateur"><a href="{{path('profile',{'pseudo':id }) }}" class="publicateur">'+ data.prenom+ data.nom +'</a></div>'
+          +'	<div class="large-6 medium-6 cell publication">'+message+'</div>'
+          +'<div class="large-2 medium-2 cell datePublication"><p>publié le '+data.date+' à '+data.heure+'</p></div>'
+          );
+
+	     });
+
+
+
+	});
+</script>
+
 	<script src="{{asset('js/fonctionsPages.js')}}"></script>
 {% endblock %}

@@ -35,7 +35,7 @@ $id_message =null;
 
         $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Message');
       $id_message = $repo->findOneBy(array(),array('id'=>'DESC'));
-      
+
 
     // -- Envoi du message en base --
     if($request->getMethod()=="POST" && $request->get('method')=="submit"){
@@ -65,6 +65,7 @@ $id_message =null;
           }
 
 $old_messages_txt =$this->getMessages($user_emmeteur,$user_destinataire);
+
 
 
 if($request->getMethod()=="POST" && $request->get('method')=="getMessage"){
@@ -117,10 +118,12 @@ return new JsonResponse($response);
 
 
 /**
-    * Get Ancien Message
-    *
-    * @return array
-    */
+* Get Ancien Message
+*
+*@param AppBundle:Utilisateur $user_emmeteur utilisateur emmeteur
+*@param AppBundle:Utilisateur $user_destinataire utilisateur destinataire
+* @return array les message
+*/
 function getMessages($user_emmeteur,$user_destinataire){
   //Recupere les messages envoyés précedemments depuis la base
     $query = $this->getDoctrine()->getManager()
