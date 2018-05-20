@@ -31,8 +31,11 @@ class Utilisateur implements UserInterface, \Serializable
     private $prenom;
 
     /**
-     * @var string
-     */
+       * @ORM\Column(type="string")
+       *@var string
+       * @Assert\NotBlank(message="Ajouter une image jpg")
+       * @Assert\File(mimeTypes={ "image/jpeg" })
+       */
     private $ppPath;
 
     /**

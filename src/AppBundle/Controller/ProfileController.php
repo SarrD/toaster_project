@@ -2,6 +2,8 @@
 
 namespace AppBundle\Controller;
 
+use AppBundle;
+
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
@@ -9,6 +11,8 @@ use AppBundle\Entity\Utilisateur;
 use AppBundle\Entity\Post;
 use AppBundle\Entity\Connait;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use AppBundle\Service\FileUploader;
+use AppBundle\Form\ProductType;
 
 class ProfileController extends DefaultController
 {
@@ -17,6 +21,8 @@ class ProfileController extends DefaultController
    */
    public function profile(Request $request, $pseudo)
    {
+
+
      if ($request->getMethod() == "POST") {
 
 
@@ -82,6 +88,7 @@ class ProfileController extends DefaultController
        }else{
            $template_profil = 'profile.html.twig'; // perso = profil privé
        }
+
 
 
      //Creation du tableau de parametres de profil pour le template twig
@@ -189,6 +196,32 @@ class ProfileController extends DefaultController
      $liste = $query->getArrayResult();
 
        return $liste;
+   }
+
+
+   /**
+   * @Route("/photo1/{id}", name="photo1")
+   */
+   public function newAction(Request $request, FileUploader $fileUploader,$id)
+   {
+
+
+     //Requete DQL sur "pseudo"
+     $users = $this->getDoctrine()->getManager()->getRepository('AppBundle:Utilisateur');
+     //$query = $em->createQuery("SELECT u FROM Utilisateur WHERE  = u.id = :id ");
+     //$profile = $query->getResult();
+     $user = $users->findOneBy(['id' => $id]);
+
+      if ($form->isSubmitted() && $form->isValid()) {
+           $file = $user->getPpPath();
+           $fileName = $fileUploader->upload($file);
+
+           $user->setPpPath($fileName);
+         }
+
+return $this->redirectToRoute('profile', array('pseudo' => $id));
+
+
    }
 
 }
