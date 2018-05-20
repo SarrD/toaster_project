@@ -35,39 +35,49 @@
       !function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src='https://weatherwidget.io/js/widget.min.js';fjs.parentNode.insertBefore(js,fjs);}}(document,'script','weatherwidget-io-js');
     </script>
 
+  </div>
+
+  <div class="large-1 medium-1 cell">
+
     {% if connexion_erreur is defined %}
         {% if connexion_erreur != null %}
            <div class="erreur">{{ connexion_erreur.messageKey|trans(connexion_erreur.messageData, 'security') }}</div>
         {% endif %}
     {% endif %}
 
-  </div>
+    {% if inscription_erreur is defined %}
+      {% if inscription_erreur != null %}
+       <div class="erreur">{{inscription_erreur}}</div>
+      {% endif %}
+    {% endif %}
 
+</div>
 
-<div class="large-7 medium-7 cell ">
+<div class="large-6 medium-6 cell">
 
   <h1>Inscription</h1>
 
-  <form action="{{ path('register') }}" method="post" class="inscription">
-  <!--<input type="text" name="username" id="username" placeholder="pseudo (3 à 15 caractères)" required />-->
-    <input type="text" name="prenom" id="prenom" placeholder="Prénom" required />
-    <input type="text" name="nom" id="nom" placeholder="Nom" required />
-<br/>
-  <input type="email" name="email" placeholder="e-Mail" required />
-<br/>
-  <input type="password" name="password" placeholder="Mot de passe (3 à 30 caractères)" required />
-<input type="password" name="password2" placeholder="Confirmation du mot de passe" required />
-<br/>
-<br/>
-<input type="hidden" name="_target_path" value="{{ path("register") }}" />
-<input type="submit" name="inscription" class="btn contenu" value="Créer un compte">
-</form>
+    <form action="{{ path('register') }}" method="post" class="inscription">
+      <!--<input type="text" name="username" id="username" placeholder="pseudo (3 à 15 caractères)" required />-->
+      <input type="text" name="prenom" id="prenom" placeholder="Prénom" required />
+      <input type="text" name="nom" id="nom" placeholder="Nom" required />
+      
+      <br/>
 
-{% if inscription_erreur is defined %}
-    {% if inscription_erreur != null %}
-       <div class="erreur">{{inscription_erreur}}</div>
-    {% endif %}
-{% endif %}
+      <input type="email" name="email" placeholder="e-Mail" required />
+      
+      <br/>
+
+      <input type="password" name="password" placeholder="Mot de passe (3 à 30 caractères)" required />
+      <input type="password" name="password2" placeholder="Confirmation du mot de passe" required />
+      
+      <br/>
+      <br/>
+
+      <input type="hidden" name="_target_path" value="{{ path("register") }}" />
+      <input type="submit" name="inscription" class="btn contenu" value="Créer un compte">
+    </form>
+
 
 </div>
 

@@ -593,5 +593,11 @@ span.ajout:hover {
 /*************************************FIN AJOUT******************************************/
 
 div.erreur {
-  color :red;
+  background-color :red;
+  color: black;
+  font-weight: bold;
+  padding-left: 10%;
+  font-family: contenu;
+  border-radius: 10px;
+  box-shadow: 5px 10px 18px red;
 }
