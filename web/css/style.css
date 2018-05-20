@@ -493,6 +493,12 @@ a.publicateur:hover {
     color: #9575CD;
 }
 
+div.cadrePost {
+    border: 1px solid #B39DDB;
+    margin: 3px;
+
+}
+
 div.publication {
     border: 1px solid #B39DDB;
     font-family: contenu;

@@ -166,7 +166,8 @@ class ProfileController extends DefaultController
                     FROM 'AppBundle:Utilisateur' u,'AppBundle:Post' p
                     WHERE p.idUtilisateur = u.id
                     AND p.visibilite = 1
-                    AND u.id = :id");
+                    AND u.id = :id
+                    ORDER BY p.datePost DESC, p.heurePost DESC ");
      $query->setParameter('id',$idUser);
      $liste = $query->getArrayResult();
 
@@ -184,7 +185,8 @@ class ProfileController extends DefaultController
      ->createQuery("SELECT p.texte texte, p.datePost datep, p.heurePost heurep,  p.visibilite visibilite, u.ppPath photo, u.prenom prenom, u.nom nom, u.id id
                     FROM 'AppBundle:Utilisateur' u,'AppBundle:Post' p
                     WHERE p.idUtilisateur = u.id
-                    AND u.id = :id");
+                    AND u.id = :id
+                    ORDER BY p.datePost DESC, p.heurePost DESC ");
      $query->setParameter('id',$idUser);
      $liste = $query->getArrayResult();
 
