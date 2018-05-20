@@ -111,10 +111,12 @@
 		    </div>
 		    <div class="small-12 medium-6 columns add-friend">
 		      <div class="add-friend-action">
+						{% if id != monid %}
 						<a class="btn" href='{{path('ajouter',{'pseudo': ami.id}) }}'>
  						 <i class="fa fa-user-plus" aria-hidden="true"></i>
  						 Ajouter
  					 </a>
+					 {% endif %}
 					 <a class="btn" href='{{path('retirer',{'pseudo': ami.id}) }}'>
 						 <i class="fa fa-user-plus" aria-hidden="true"></i>
 						 Retirer de la liste

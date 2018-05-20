@@ -32,7 +32,8 @@ class AmisController extends DefaultController
              'bio'         => $user->getBio(),
              'id'         => $user->getId(),
              'amis' => $this->getListeAmis($user->getId()),
-             'photo' => $user->getPpPath()
+             'photo' => $user->getPpPath(),
+             'monid' => $this->getUser()->getId()
          ));
 
          return $pageAmis;
@@ -121,7 +122,7 @@ class AmisController extends DefaultController
        if ($this->getUser()->getId() == $pseudo){
          $this->redirectToRoute('mon_profil');
        }
-       
+
        $em =$this->getDoctrine()->getManager();
        $relations = $em->getRepository('AppBundle:Connait');
        $relation = $relations->findOneBy(['idUtilisateur1' => $pseudo]);
