@@ -41,7 +41,7 @@ class ProfileController extends DefaultController
             $em->persist($publipost);
             $em->flush();
 
-             $this->monProfil();
+            // $this->monProfil();
 
             return new JsonResponse(array(
               'heure' =>date('H:i:s'),
@@ -49,6 +49,7 @@ class ProfileController extends DefaultController
               'id' =>$this->getUser()->getId(),
               'nom' =>$this->getUser()->getNom(),
               'prenom' => $this->getUser()->getPrenom(),
+              'photo' => $this->getUser()->getPpPath()
 
             ));
          }
@@ -170,7 +171,8 @@ class ProfileController extends DefaultController
                     FROM 'AppBundle:Utilisateur' u,'AppBundle:Post' p
                     WHERE p.idUtilisateur = u.id
                     AND p.visibilite = 1
-                    AND u.id = :id");
+                    AND u.id = :id
+                    ORDER BY p.datePost DESC, p.heurePost DESC ");
      $query->setParameter('id',$idUser);
      $liste = $query->getArrayResult();
 
@@ -188,7 +190,8 @@ class ProfileController extends DefaultController
      ->createQuery("SELECT p.texte texte, p.datePost datep, p.heurePost heurep,  p.visibilite visibilite, u.ppPath photo, u.prenom prenom, u.nom nom, u.id id
                     FROM 'AppBundle:Utilisateur' u,'AppBundle:Post' p
                     WHERE p.idUtilisateur = u.id
-                    AND u.id = :id");
+                    AND u.id = :id
+                    ORDER BY p.datePost DESC, p.heurePost DESC ");
      $query->setParameter('id',$idUser);
      $liste = $query->getArrayResult();
 

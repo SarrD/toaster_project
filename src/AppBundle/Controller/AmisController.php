@@ -148,6 +148,7 @@ class AmisController extends DefaultController
        $etat = "";
         if ($request->getMethod() == "POST") {
             $this->refuser($pseudo);
+            return $this->redirectToRoute('mon_profil');
         }
           $user = $em->getRepository('AppBundle:Utilisateur')->findOneBy(['id' => $pseudo]);
 
@@ -156,7 +157,8 @@ class AmisController extends DefaultController
                  'prenom'         => $user->getPrenom(),
                  'id'         => $user->getId(),
                  'monid' => $this->getUser()->getId(),
-                 'etat' => $etat
+                 'etat' => $etat,
+                 'photo' => $this->getUser()->getPpPath()
              ));
 
         return $page;

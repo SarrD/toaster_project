@@ -17,10 +17,11 @@ window.onload = openAjout();
 </script>
 
 
-<div>
+<div class="grid-x grid-padding-x contenu">
+  <div class="large-12 medium-12 cell">
 
 		<form class="msg-ajout"  method="post">
-		<h2>	Voulez vous vraiment ajouter {{prenom}} {{nom}} ? </h3>
+		<h1>Voulez-vous vraiment ajouter {{prenom}} {{nom}} ?</h1>
 
       <br>
 
@@ -28,9 +29,11 @@ window.onload = openAjout();
 
 			<br/>
       <input type="hidden" name="_target_path" value="{{path('ajouter',{'pseudo': id}) }}" />
-			<input type="submit" name="publier" class="btn" value="Confirmer"/>
+			<input type="submit" name="ajout" class="btn" value="Confirmer"/>
       <a href="{{path('profile',{'pseudo': id}) }}" class="btn-suppr">Annuler</a>
 		</form>
+    
+  </div>  
 
 </div>
 
