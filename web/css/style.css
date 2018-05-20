@@ -184,19 +184,18 @@ p {
 
 /*button suppr*/
 .btn-suppr {
-    background-color: #FC7307;
-    /* background-color: #6200EA; */
-    /*background-color:  #990000;*/
-    padding: 10px 20px;
-    font-size: 16px;
+    background-color: #B39DDB;
+    padding: 9px 20px;
+    font-size: 1em;
     cursor: pointer;
     font-family: contenu;
-    /*border-color: #B85B14;*/
-    /*border-color: #311B92;*/
-    border-color: #512DA8;
-    /*color: black;*/
+    border: 4px solid #512DA8;
     color: white;
     border-radius:10px;
+    display: block;
+    text-align: center;
+    max-width: 7.7%;
+    line-height: 1;
 }
 
 .btn-suppr:hover {
