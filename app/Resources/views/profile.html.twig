@@ -175,14 +175,10 @@ function closePublication() {
 
    <!-- PUBLICATIONS-->
 
-    	<!-- loop-->
-    {% if listePubli is empty %}
-      <div id="post_push" class="grid-x grid-padding-x"></div>
-    {% endif %}
-
-
+	<!-- loop-->
+  <div id="post_push" class="grid-x grid-padding-x">
     {% for publi in listePubli %}
-    <div id="post_push" class="grid-x grid-padding-x">
+
 
 
 
@@ -206,10 +202,10 @@ function closePublication() {
        	</div>
 
 
-  </div>
-	<!-- end loop-->
-  {% endfor %}
 
+	<!-- end loop-->
+    {% endfor %}
+	</div>
 
 
 
