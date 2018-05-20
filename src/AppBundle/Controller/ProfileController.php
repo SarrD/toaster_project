@@ -38,7 +38,7 @@ class ProfileController extends DefaultController
             $em->persist($publipost);
             $em->flush();
 
-             $this->monProfil();
+            // $this->monProfil();
 
             return new JsonResponse(array(
               'heure' =>date('H:i:s'),
@@ -46,6 +46,7 @@ class ProfileController extends DefaultController
               'id' =>$this->getUser()->getId(),
               'nom' =>$this->getUser()->getNom(),
               'prenom' => $this->getUser()->getPrenom(),
+              'photo' => $this->getUser()->getPpPath()
 
             ));
          }
