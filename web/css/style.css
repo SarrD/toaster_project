@@ -596,8 +596,8 @@ div.erreur {
   background-color :red;
   color: black;
   font-weight: bold;
-  padding-left: 10%;
+  padding-left: 15%;
   font-family: contenu;
-  border-radius: 10px;
-  box-shadow: 5px 10px 18px red;
+  border-bottom-left-radius: 20px;
+  box-shadow: 1px 5px 50px red;
 }
