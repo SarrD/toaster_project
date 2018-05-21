@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 /**
@@ -32,6 +33,10 @@ class Utilisateur implements UserInterface, \Serializable
 
     /**
      * @var string
+     *
+     * @ORM\Column(name="pp_path", type="string", length=50, nullable=true)
+     * @Assert\NotBlank(message="Please, upload the product brochure as a PDF file.")
+     * @Assert\File(mimeTypes={ "image/jpg","image/jpeg","image/png" })
      */
     private $ppPath;
 

@@ -8,6 +8,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: en
+    brochures_directory: '%kernel.project_dir%/web/css/img'
 
 # config/packages/framework.yaml
 framework:

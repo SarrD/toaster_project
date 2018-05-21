@@ -1,0 +1,18 @@
+{# app/Resources/views/product/new.html.twig #}
+
+{% extends 'menu.html.twig' %}
+
+
+{% block title %}Message privée{% endblock %}
+
+{% block body %}
+<h1>Ajouter une personne avec une photo</h1>
+
+{{ form_start(form) }}
+    {# ... #}
+
+    {{ form_row(form.ppPath) }}
+      <input type="submit" name="envoyer" class="btn" value="Envoyer"/>
+{{ form_end(form) }}
+<a href="{{ asset('css/img/' ~ user.ppPath) }}">View brochure (PDF)</a>
+{% endblock %}
