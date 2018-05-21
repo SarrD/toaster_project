@@ -25,7 +25,26 @@
 
 		<div id="msg" class="large-4 medium-4 cell msg">
 			<h1>Conversations</h1>
-			<h1>*Liste conversations*</h1>
+			<div class="grid-x grid-padding-x conversations">
+
+
+			{% if not amis is empty %}
+			{% for ami in amis %}
+
+			<div class="large-4 medium-4 cell imagePublicateur">
+				<img class="publicateur" src="{{ asset('css/img/' ~ ami.photo) }}" alt="{{ami.photo | raw}}">
+			</div>
+
+			<div class="large-8 medium-8 cell publicateur">
+				<a href="{{path('message',{'id_destinataire': ami.id}) }}" class="amis">
+					{{ami.prenom | raw}} {{ami.nom | raw}}
+				</a>
+			</div>
+
+				{% endfor %}
+				{% endif %}
+
+				</div>
 		</div>
 
 		<div id="msg" class="large-8 medium-8 cell msg">
