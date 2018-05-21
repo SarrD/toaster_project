@@ -426,6 +426,12 @@ span.tchat > *:nth-child(odd) {
     word-wrap: break-word;
 }
 
+div.conversations {
+    min-height: 450px;
+    max-height: 450px;
+    overflow-y: scroll;
+}
+
 /*********************************** FIN page messagerie *****************************************/
 
 
