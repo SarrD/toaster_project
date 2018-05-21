@@ -156,6 +156,60 @@ class ProfileController extends DefaultController
    }
 
    /**
+   * @Route("/timeline", name="timeline")
+   */
+   public function timeline()
+   {
+     if ($request->getMethod() == "POST") {
+
+
+         $publication= $request->request->get('publication');
+
+         if ($publication == "" && false) {
+             //Alert ?
+         }else{
+
+
+            $em = $this->getDoctrine()->getManager();
+
+            $publipost = new Post();
+            $publipost->setTexte($publication);
+            $publipost->setDatePost(new \DateTime());
+            $publipost->setHeurePost(new \DateTime());
+            $publipost->setVisibilite(1);
+            $publipost->setIdUtilisateur($this->getUser()->getId());
+            $em->persist($publipost);
+            $em->flush();
+
+            // $this->monProfil();
+
+            return new JsonResponse(array(
+              'heure' =>date('H:i:s'),
+              'date' =>date('Y-m-d'),
+              'id' =>$this->getUser()->getId(),
+              'nom' =>$this->getUser()->getNom(),
+              'prenom' => $this->getUser()->getPrenom(),
+              'photo' => $this->getUser()->getPpPath()
+
+            ));
+         }
+
+         }
+
+        $user = $this->getUser();
+
+         return $this->render('timeline.html.twig', array(
+                'nom' => $user->getNom(),
+                'prenom'         => $user->getPrenom(),
+                'id'         => $user->getId(),
+                'listePubli' => $this->getListePostAmis(),
+                'photo' => $user->getPpPath(),
+                'monid' => $this->getUser()->getId()
+            ));
+
+   }
+
+   /**
     * Get Liste publis
     *
     * @return array
@@ -193,5 +247,21 @@ class ProfileController extends DefaultController
 
        return $liste;
    }
+
+   /**
+    * Get Liste publis des amis
+    *
+    * @return array
+    */
+   public function getListePostAmis()
+   {
+     $query = $this->getDoctrine()->getManager()
+     ->createQuery("");
+     $query->setParameter('id',$this->getUser()->getId());
+     $liste = $query->getArrayResult();
+
+       return $liste;
+   }
+
 
 }
