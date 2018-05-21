@@ -22,7 +22,7 @@ public function message(Request $request, $id_destinataire)
 {
 
     //Recuperation  des donnee de formulaire dans un tableau associatif "$params"
-$id_message =null;
+
     $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Utilisateur');
       $monId = $this->getUser()->getId();
 
@@ -69,6 +69,8 @@ $old_messages_txt =$this->getMessages($user_emmeteur,$user_destinataire);
 
 
 if($request->getMethod()=="POST" && $request->get('method')=="getMessage"){
+
+
       $repository = $this->getDoctrine()
       ->getRepository(Message::class);
   // createQueryBuilder() automatically selects FROM AppBundle:Message
@@ -82,6 +84,9 @@ if($request->getMethod()=="POST" && $request->get('method')=="getMessage"){
                 AND ((ud.id=:dest AND ue.id=:emmet) OR (ud.id=:emmet AND ue.id=:dest))
                 AND m.id > :id
                 ORDER BY m.id DESC");
+
+
+
   $query->setParameter('emmet',$user_emmeteur->getId())
         ->setParameter('dest',$user_destinataire->getId())
         ->setParameter('id',$request->get('id_message'));

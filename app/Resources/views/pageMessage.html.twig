@@ -20,7 +20,7 @@
 
 		<div id="msg" class="large-4 medium-4 cell msg">
 			<h1>Conversations</h1>
-			
+
 			<div class="grid-x grid-padding-x conversations">
 
 				{% if not amis is empty %}
@@ -66,7 +66,7 @@
         			<input name="usermsg" type="text" id="usermsg"  placeholder="Saisissez votre message..." />
         			<input class="btn" name="envoyer" type="submit"  id="envoyer" value="Envoyer"/>
 				</form>
-			
+
 		</div>
 
 	</div>
@@ -90,8 +90,7 @@
 <script type="text/javascript">
 
 
-var id_message =0;
-
+var id_message="{{ id_message.id | raw }}";
 
 	$('#envoyer').click(function(e){
 		e.preventDefault();
@@ -104,9 +103,9 @@ var id_message =0;
 	        message: message
 	     },
 	     function(data, status){
-	         alert("Le message vient d'être envoyer sur la base " );
 					 id_message =data.id_message;
 	     });
+
 	$('span.tchat').append("<div>"+pseudo+"<span>"+message+"</span>"+"</div>");
 	});
 
