@@ -110,6 +110,7 @@ return new JsonResponse($response);
                       'id' => $user_destinataire->getId(),
                       'old_messages' => $old_messages_txt,
                       'id_message' => $id_message,
+                      'amis' => $this->getListeAmis($user_emmeteur->getId()),
                       //'message' => $last_message,
                   ));
 }
@@ -137,6 +138,28 @@ function getMessages($user_emmeteur,$user_destinataire){
     $old_messages_txt = $query->getArrayResult();
 
     return $old_messages_txt;
+}
+
+/**
+ * Get Liste Amis
+ *
+ * @return array
+ */
+public function getListeAmis($idUser)
+{
+  $query = $this->getDoctrine()->getManager()
+  ->createQuery("SELECT ue.id id, ue.prenom prenom, ue.nom nom, ue.ppPath photo
+                 FROM 'AppBundle:Utilisateur' ud,'AppBundle:Utilisateur' ue, 'AppBundle:Connait' c
+                 WHERE (c.idUtilisateur1 = ue.id
+                 OR c.idUtilisateur2 = ue.id)
+                 AND c.etatRequete = 1
+                 AND ud.id = :id
+                 AND ue.id != :id");
+  $query->setParameter('id',$idUser);
+  $liste = $query->getArrayResult();
+
+//  $liste = [$this,$this,$this];
+    return $liste;
 }
 
 }
