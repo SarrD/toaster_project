@@ -10,6 +10,7 @@ use AppBundle\Entity\Post;
 use AppBundle\Entity\Connait;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
+
 class ProfileController extends DefaultController
 {
    /**
@@ -17,6 +18,8 @@ class ProfileController extends DefaultController
    */
    public function profile(Request $request, $pseudo)
    {
+
+
      if ($request->getMethod() == "POST") {
 
 
@@ -83,6 +86,7 @@ class ProfileController extends DefaultController
        }else{
            $template_profil = 'profile.html.twig'; // perso = profil privé
        }
+
 
 
      //Creation du tableau de parametres de profil pour le template twig

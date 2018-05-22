@@ -1,15 +1,10 @@
-
 {% extends 'menu.html.twig' %}
-
 
 {% block title %}Message privée{% endblock %}
 
 {% block body %}
 
-
 <div class="grid-container.fluid">
-
-
 
 	<div class="grid-x grid-padding-x contenu">
 
@@ -25,35 +20,36 @@
 
 		<div id="msg" class="large-4 medium-4 cell msg">
 			<h1>Conversations</h1>
+
 			<div class="grid-x grid-padding-x conversations">
 
+				{% if not amis is empty %}
+				{% for ami in amis %}
 
-			{% if not amis is empty %}
-			{% for ami in amis %}
+				<div class="large-4 medium-4 cell imagePublicateur">
+					<img class="publicateur" src="{{ asset('css/img/' ~ ami.photo) }}" alt="{{ami.photo | raw}}">
+				</div>
 
-			<div class="large-4 medium-4 cell imagePublicateur">
-				<img class="publicateur" src="{{ asset('css/img/' ~ ami.photo) }}" alt="{{ami.photo | raw}}">
-			</div>
-
-			<div class="large-8 medium-8 cell publicateur">
-				<a href="{{path('message',{'id_destinataire': ami.id}) }}" class="amis">
-					{{ami.prenom | raw}} {{ami.nom | raw}}
-				</a>
-			</div>
+				<div class="large-8 medium-8 cell publicateur">
+					<a href="{{path('message',{'id_destinataire': ami.id}) }}" class="amis">
+						{{ami.prenom | raw}} {{ami.nom | raw}}
+					</a>
+				</div>
 
 				{% endfor %}
 				{% endif %}
 
-				</div>
+			</div>
+
 		</div>
 
 		<div id="msg" class="large-8 medium-8 cell msg">
-			<h3><a href="{{path('profile',{'pseudo': id}) }}">
+			<h1><a href="{{path('profile',{'pseudo': id}) }}" class="nom">
 				{{prenom_destinataire}} {{nom_destinataire}}
-			</a></h3>
+			</a></h1>
 
-				<div class="tchat">
-					<span class="tchat">
+			<div class="tchat">
+				<span class="tchat">
 
 					{% for message in old_messages %}
         				<div id="pseudo"> {{message.nom_emmeteur | raw}} {{message.prenom_emmeteur | raw}}  | 	<span id="message"> {{message.texte}} </span>	</div>
@@ -63,13 +59,14 @@
 					<!--		<div id="pseudo"> prenom nom  | 	<span id="message"> message </span>	</div> -->
 
 
-					</span>
-				</div>
+				</span>
+			</div>
 
 				<form name="message" action="{{path('message',{'id_destinataire': id}) }}" method="post">
         			<input name="usermsg" type="text" id="usermsg"  placeholder="Saisissez votre message..." />
         			<input class="btn" name="envoyer" type="submit"  id="envoyer" value="Envoyer"/>
 				</form>
+
 		</div>
 
 	</div>
@@ -93,8 +90,7 @@
 <script type="text/javascript">
 
 
-var id_message =0;
-
+var id_message="{{ id_message.id | raw }}";
 
 	$('#envoyer').click(function(e){
 		e.preventDefault();
@@ -107,9 +103,9 @@ var id_message =0;
 	        message: message
 	     },
 	     function(data, status){
-	         alert("Le message vient d'être envoyer sur la base " );
 					 id_message =data.id_message;
 	     });
+
 	$('span.tchat').append("<div>"+pseudo+"<span>"+message+"</span>"+"</div>");
 	});
 

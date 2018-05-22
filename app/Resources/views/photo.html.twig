@@ -1,0 +1,36 @@
+{# app/Resources/views/product/new.html.twig #}
+
+{% extends 'menu.html.twig' %}
+
+{% block title %}Paramètres{% endblock %}
+
+{% block body %}
+
+<div class="grid-x grid-padding-x contenu">
+
+		<div class="large-12 medium-12 cell">
+			<h1>Paramètres</h1>
+		</div>
+
+</div>
+
+<div class="grid-x grid-padding-x contenu">
+
+		<div class="large-3 medium-3 cell publicateur">
+			<p class="parametres">Ajouter une nouvelle photo de profil</p>
+		</div>
+
+    <div class="large-9 medium-9 cell imagePublicateur">
+			{{ form_start(form) }}
+    {# ... #}
+
+    {{ form_row(form.ppPath) }}
+      <input type="submit" name="envoyer" class="btn" value="Envoyer"/>
+{{ form_end(form) }}
+
+		</div>
+
+</div>
+
+
+{% endblock %}
