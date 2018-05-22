@@ -160,6 +160,60 @@ class ProfileController extends DefaultController
    }
 
    /**
+   * @Route("/timeline", name="timeline")
+   */
+   public function timeline(Request $request)
+   {
+     if ($request->getMethod() == "POST") {
+
+
+         $publication= $request->request->get('publication');
+
+         if ($publication == "" && false) {
+             //Alert ?
+         }else{
+
+
+            $em = $this->getDoctrine()->getManager();
+
+            $publipost = new Post();
+            $publipost->setTexte($publication);
+            $publipost->setDatePost(new \DateTime());
+            $publipost->setHeurePost(new \DateTime());
+            $publipost->setVisibilite(1);
+            $publipost->setIdUtilisateur($this->getUser()->getId());
+            $em->persist($publipost);
+            $em->flush();
+
+            // $this->monProfil();
+
+            return new JsonResponse(array(
+              'heure' =>date('H:i:s'),
+              'date' =>date('Y-m-d'),
+              'id' =>$this->getUser()->getId(),
+              'nom' =>$this->getUser()->getNom(),
+              'prenom' => $this->getUser()->getPrenom(),
+              'photo' => $this->getUser()->getPpPath()
+
+            ));
+         }
+
+         }
+
+        $user = $this->getUser();
+
+         return $this->render('timeline.html.twig', array(
+                'nom' => $user->getNom(),
+                'prenom'         => $user->getPrenom(),
+                'id'         => $user->getId(),
+                'listePubli' => $this->getListePostAmis(),
+                'photo' => $user->getPpPath(),
+                'monid' => $this->getUser()->getId()
+            ));
+
+   }
+
+   /**
     * Get Liste publis
     *
     * @return array
@@ -193,6 +247,27 @@ class ProfileController extends DefaultController
                     AND u.id = :id
                     ORDER BY p.datePost DESC, p.heurePost DESC ");
      $query->setParameter('id',$idUser);
+     $liste = $query->getArrayResult();
+
+       return $liste;
+   }
+
+   /**
+    * Get Liste publis des amis
+    *
+    * @return array
+    */
+   public function getListePostAmis()
+   {
+     $query = $this->getDoctrine()->getManager()
+     ->createQuery("SELECT p.texte texte, p.datePost datep, p.heurePost heurep,  p.visibilite visibilite, u.ppPath photo, u.prenom prenom, u.nom nom, u.id id
+                    FROM 'AppBundle:Utilisateur' u,'AppBundle:Post' p, 'AppBundle:Connait' c
+                    WHERE (c.idUtilisateur1 = :id
+                    OR c.idUtilisateur2 = :id)
+                    AND c.etatRequete = 1
+                    AND p.idUtilisateur = u.id
+                    ORDER BY p.datePost DESC, p.heurePost DESC ");
+     $query->setParameter('id',$this->getUser()->getId());
      $liste = $query->getArrayResult();
 
        return $liste;

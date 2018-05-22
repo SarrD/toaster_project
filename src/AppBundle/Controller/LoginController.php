@@ -30,7 +30,7 @@ class LoginController extends DefaultController
               $redir =  $this->redirectToRoute('sonata_admin_dashboard');
           }else{
             //TODO Route user
-              $redir =  $this->redirectToRoute('mon_profil');
+              $redir =  $this->redirectToRoute('timeline');
 
           }
       }else {
