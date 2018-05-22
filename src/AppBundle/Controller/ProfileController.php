@@ -158,7 +158,7 @@ class ProfileController extends DefaultController
    /**
    * @Route("/timeline", name="timeline")
    */
-   public function timeline()
+   public function timeline(Request $request)
    {
      if ($request->getMethod() == "POST") {
 
@@ -256,7 +256,13 @@ class ProfileController extends DefaultController
    public function getListePostAmis()
    {
      $query = $this->getDoctrine()->getManager()
-     ->createQuery("");
+     ->createQuery("SELECT p.texte texte, p.datePost datep, p.heurePost heurep,  p.visibilite visibilite, u.ppPath photo, u.prenom prenom, u.nom nom, u.id id
+                    FROM 'AppBundle:Utilisateur' u,'AppBundle:Post' p, 'AppBundle:Connait' c
+                    WHERE (c.idUtilisateur1 = :id
+                    OR c.idUtilisateur2 = :id)
+                    AND c.etatRequete = 1
+                    AND p.idUtilisateur = u.id
+                    ORDER BY p.datePost DESC, p.heurePost DESC ");
      $query->setParameter('id',$this->getUser()->getId());
      $liste = $query->getArrayResult();
 
