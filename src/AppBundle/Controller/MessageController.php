@@ -57,12 +57,10 @@ public function message(Request $request, $id_destinataire)
             $em->persist($message);
             $em->flush();
 
+            $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Message');
             $id_message = $repo->findOneBy(array(),array('id'=>'DESC'));
             //$id_message = $id_message->getId();
 
-           if($id_message == NULL){
-              $id_message = 0;
-            }
 
             $response = array('id_message' => $id_message);
             return new JsonResponse($response);
