@@ -101,7 +101,7 @@ if($request->getMethod()=="POST" && $request->get('method')=="getMessage"){
   $id_message = $id_message->getId();
 
   if($id_message == NULL){
-    $id_message = 0;
+    $id_message = new Message();
   }
 
 $response = array('message' =>$last_message,
@@ -113,7 +113,7 @@ return new JsonResponse($response);
 
 }
 if($id_message == NULL){
-  $id_message = 0;
+  $id_message = new Message();
 }
                //Creation du tableau de parametres de profil pour le template twig
                //Retour du template rempli
