@@ -8,7 +8,7 @@
 			<h1>Personnes</h1>
 		</div>
 
-</div>			
+</div>
 
 <div class="grid-x grid-padding-x contenu">
 
@@ -16,19 +16,28 @@
 
 	<div class="large-3 medium-3 cell imagePublicateur">
     <img class="publicateur" src="{{ asset('css/img/' ~ personne.ppPath) }}" alt="{{personne.ppPath | raw}}">
-  </div>	
+  </div>
 
 	<div class="large-6 medium-6 cell publicateur">
     <a href="{{path('profile',{'pseudo': personne.id}) }}" class="amis">
 		  {{personne.prenom | raw}} {{personne.nom | raw}}
 		</a>
-  </div> 
+  </div>
 
 	<div class="large-3 medium-3 cell imagePublicateur">
+
+		{% if personne.id != id %}
 		<a class="btn" href='{{path('ajouter',{'pseudo': personne.id}) }}'>Ajouter</a>
-					
-		<a class="btn-" href='{{path('retirer',{'pseudo': personne.id}) }}'>Retirer de la liste</a>    
-	</div> 
+
+		<a class="btn-" href='{{path('retirer',{'pseudo': personne.id}) }}'>Retirer de la liste</a>
+
+		{% else %}
+
+		<a class="btn" href='{{path('mon_profil')}}'>Mon Profil</a>
+
+		{% endif %}
+
+	</div>
 
 	{% endfor %}
 
