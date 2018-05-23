@@ -89,9 +89,13 @@
 
 <script type="text/javascript">
 
-
+{% if "{{id_message.id | raw }}"==null %}{
+	var id_message=0;
+}
+else{
 var id_message="{{ id_message.id | raw }}";
-
+}
+{% endif %}
 	$('#envoyer').click(function(e){
 		e.preventDefault();
 		var pseudo ="{{prenom | raw}} {{nom | raw}} | "; // on sécurise les données
