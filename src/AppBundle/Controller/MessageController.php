@@ -59,6 +59,11 @@ public function message(Request $request, $id_destinataire)
 
             $id_message = $repo->findOneBy(array(),array('id'=>'DESC'));
             $id_message = $id_message->getId();
+
+            if($id_message == NULL){
+              $id_message = 0;
+            }
+
             $response = array('id_message' => $id_message);
             return new JsonResponse($response);
 
@@ -95,6 +100,9 @@ if($request->getMethod()=="POST" && $request->get('method')=="getMessage"){
   $id_message = $repo->findOneBy(array(),array('id'=>'DESC'));
   $id_message = $id_message->getId();
 
+  if($id_message == NULL){
+    $id_message = 0;
+  }
 
 $response = array('message' =>$last_message,
   'id_message'=>$id_message
@@ -104,7 +112,9 @@ $response = array('message' =>$last_message,
 return new JsonResponse($response);
 
 }
-
+if($id_message == NULL){
+  $id_message = 0;
+}
                //Creation du tableau de parametres de profil pour le template twig
                //Retour du template rempli
                return $this->render('pageMessage.html.twig', array(
