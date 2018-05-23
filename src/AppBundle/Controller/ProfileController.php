@@ -193,7 +193,7 @@ class ProfileController extends DefaultController
               'id' =>$this->getUser()->getId(),
               'nom' =>$this->getUser()->getNom(),
               'prenom' => $this->getUser()->getPrenom(),
-              'photo' => $this->getUser()->getPpPath()
+              'maPhoto' => $this->getUser()->getPpPath()
 
             ));
          }
