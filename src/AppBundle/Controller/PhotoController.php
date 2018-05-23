@@ -13,9 +13,9 @@ use Symfony\Component\HttpFoundation\File\File;
 class PhotoController extends Controller
 {
     /**
-     * @Route("/changerphoto", name="app_product_new")
+     * @Route("/changerphoto/{pseudo}", name="app_product_new")
      */
-    public function newAction(Request $request)
+    public function newAction(Request $request,$pseudo)
     {
       $file = null;
 
@@ -23,7 +23,7 @@ class PhotoController extends Controller
       //$query = $em->createQuery("SELECT u FROM Utilisateur WHERE  = u.id = :id ");
       //$profile = $query->getResult();
 
-      $user = $users->findOneBy(['id' =>  $this->getUser()->getId()]);
+      $user = $users->findOneBy(['id' => $pseudo]);
 
 
       if($user == null){
