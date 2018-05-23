@@ -48,11 +48,10 @@ class AmisController extends DefaultController
      {
        $query = $this->getDoctrine()->getManager()
        ->createQuery("SELECT ue.id id, ue.prenom prenom, ue.nom nom, ue.ppPath photo
-                      FROM 'AppBundle:Utilisateur' ud,'AppBundle:Utilisateur' ue, 'AppBundle:Connait' c
+                      FROM 'AppBundle:Utilisateur' ue, 'AppBundle:Connait' c
                       WHERE (c.idUtilisateur1 = ue.id
                       OR c.idUtilisateur2 = ue.id)
                       AND c.etatRequete = 1
-                      AND ud.id = :id
                       AND ue.id != :id");
        $query->setParameter('id',$idUser);
        $liste = $query->getArrayResult();
@@ -108,6 +107,14 @@ class AmisController extends DefaultController
        $relation->setEtatRequete(1);
        //$em->refresh($relation);
        $em->persist($relation);
+
+       //Test si la requete existe dans l'autre sens
+       $relation = $relations->findOneBy(['idUtilisateur2' => $pseudo, 'idUtilisateur1' => $this->getUser()->getId()]);
+       if ($relation != NULL){
+         $em->remove($relation);
+       }
+
+
        $em->flush();
 
       return $this->redirectToRoute('profile', array('pseudo' => $pseudo));
