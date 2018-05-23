@@ -52,11 +52,11 @@
 				<span class="tchat">
 
 					{% for message in old_messages %}
-        				<div id="pseudo"> {{message.nom_emmeteur | raw}} {{message.prenom_emmeteur | raw}}  | 	<span id="message"> {{message.texte}} </span>	</div>
+        				<div id="pseudo"> {{message.nom_emmeteur | raw}} {{message.prenom_emmeteur | raw}}  : 	<span id="message"> {{message.texte}} </span>	</div>
 
 					{% endfor %}
 
-					<!--		<div id="pseudo"> prenom nom  | 	<span id="message"> message </span>	</div> -->
+					<!--		<div id="pseudo"> prenom nom  : 	<span id="message"> message </span>	</div> -->
 
 
 				</span>
@@ -97,7 +97,7 @@ if(id_message==null){
 
 	$('#envoyer').click(function(e){
 		e.preventDefault();
-		var pseudo ="{{prenom | raw}} {{nom | raw}} | "; // on sécurise les données
+		var pseudo ="{{prenom | raw}} {{nom | raw}} : "; // on sécurise les données
 		var message = $('#usermsg').val();
 		$.post("{{path('message',{'id_destinataire': id})}}",
 	     {
@@ -122,7 +122,7 @@ if(id_message==null){
 					success : function(data){
 						if(!jQuery.isEmptyObject(data.message)){
 					for(var i=0;i<data.message.length ;i ++){
-					$('span.tchat').append('<div id="pseudo">'+ data.message[i].nom_emmeteur+" " +data.message[i].prenom_emmeteur+ " | " +	'<span id="message">'+data.message[i].texte+" </span>	</div>" );
+					$('span.tchat').append('<div id="pseudo">'+ data.message[i].nom_emmeteur+" " +data.message[i].prenom_emmeteur+ " : " +	'<span id="message">'+data.message[i].texte+" </span>	</div>" );
 					id_message=data.id_message;
 				}
 

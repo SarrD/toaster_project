@@ -58,7 +58,7 @@ public function message(Request $request, $id_destinataire)
             $em->flush();
 
             $id_message = $repo->findOneBy(array(),array('id'=>'DESC'));
-            $id_message = $id_message->getId();
+            //$id_message = $id_message->getId();
 
             if($id_message == NULL){
               $id_message = 0;
@@ -98,7 +98,7 @@ if($request->getMethod()=="POST" && $request->get('method')=="getMessage"){
 
   $last_message = $query->getArrayResult();
   $id_message = $repo->findOneBy(array(),array('id'=>'DESC'));
-  $id_message = $id_message->getId();
+  //$id_message = $id_message->getId();
 
   if($id_message == NULL){
     $id_message = new Message();
