@@ -102,20 +102,25 @@
   </div>
 
 	<div class="large-3 medium-3 cell imagePublicateur">
-		{% if id != monid %}
-			<a class="btn" href='{{path('ajouter',{'pseudo': ami.id}) }}'>Ajouter</a>
-		{% endif %}
+		{% if ami.id != monid %}
+		<a class="btn" href='{{path('ajouter',{'pseudo': ami.id}) }}'>Ajouter</a>
 
 		<a class="btn-" href='{{path('retirer',{'pseudo': ami.id}) }}'>Retirer de la liste</a>
-		      
+
+		{% else %}
+
+		<a class="btn" href='{{path('mon_profil')}}'>Mon Profil</a>
+
+		{% endif %}
+
 	</div>
-		
+
 		{% endfor %}
 		{% endif %}
 
-</div>	
+</div>
 
-	
+
 
 
 
