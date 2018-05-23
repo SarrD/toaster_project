@@ -207,7 +207,7 @@ class ProfileController extends DefaultController
                 'prenom'         => $user->getPrenom(),
                 'id'         => $user->getId(),
                 'listePubli' => $this->getListePostAmis(),
-                'photo' => $user->getPpPath(),
+                'maPhoto' => $user->getPpPath(),
                 'monid' => $this->getUser()->getId()
             ));
 
