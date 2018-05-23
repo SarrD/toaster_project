@@ -10,21 +10,19 @@ use AppBundle\Form\UtilisateurType;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 use Symfony\Component\HttpFoundation\File\File;
 
-class PhotoController extends Controller
+class PhotoController extends DefaultController
 {
     /**
-     * @Route("/changerphoto/{pseudo}", name="app_product_new")
+     * @Route("/changerphoto", name="photo")
      */
-    public function newAction(Request $request,$pseudo)
+    public function changerPhoto(Request $request)
     {
       $file = null;
-
+      $pseudo = $this->getUser()->getId();
       $users = $this->getDoctrine()->getManager()->getRepository('AppBundle:Utilisateur');
       //$query = $em->createQuery("SELECT u FROM Utilisateur WHERE  = u.id = :id ");
       //$profile = $query->getResult();
-
       $user = $users->findOneBy(['id' => $pseudo]);
-
 
       if($user == null){
         $this->redirectToRoute('profile_not_found');
