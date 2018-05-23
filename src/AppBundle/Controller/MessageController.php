@@ -165,8 +165,8 @@ public function getListeAmis($idUser)
   $query = $this->getDoctrine()->getManager()
   ->createQuery("SELECT ue.id id, ue.prenom prenom, ue.nom nom, ue.ppPath photo
                  FROM 'AppBundle:Utilisateur' ue, 'AppBundle:Connait' c
-                 WHERE (c.idUtilisateur1 = ue.id
-                 OR c.idUtilisateur2 = ue.id)
+                 WHERE ((c.idUtilisateur1 = ue.id AND ue.idUtilisateur2 = :id)
+                 OR (c.idUtilisateur2 = ue.id AND ue.idUtilisateur1 = :id))
                  AND c.etatRequete = 1
                  AND ue.id != :id");
   $query->setParameter('id',$idUser);
