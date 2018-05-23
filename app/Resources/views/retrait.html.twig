@@ -27,7 +27,7 @@ window.onload = openAjout();
     <h2 class = 'erreur'>  {{etat}} </h2>
 
 			<br/>
-      <input type="hidden" name="_target_path" value="{{path('refuser',{'pseudo': id}) }}" />
+      <input type="hidden" name="_target_path" value="{{path('confirm_retrait',{'pseudo': id}) }}" />
 			<input type="submit" name="retrait" class="btn" value="Confirmer"/>
       <a href="{{path('profile',{'pseudo': id}) }}" class="btn-suppr">Annuler</a>
 		</form>

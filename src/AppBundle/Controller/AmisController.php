@@ -102,7 +102,7 @@ class AmisController extends DefaultController
      {
        $em =$this->getDoctrine()->getManager();
        $relations = $em->getRepository('AppBundle:Connait');
-       $relation = $relations->findOneBy(['idUtilisateur1' => $pseudo]);
+       $relation = $relations->findOneBy(['idUtilisateur1' => $pseudo, 'idUtilisateur2' => $this->getUser()->getId()]);
 
        $em->remove($relation);
        $relation->setEtatRequete(1);
@@ -125,9 +125,9 @@ class AmisController extends DefaultController
 
        $em =$this->getDoctrine()->getManager();
        $relations = $em->getRepository('AppBundle:Connait');
-       $relation = $relations->findOneBy(['idUtilisateur1' => $pseudo]);
+       $relation = $relations->findOneBy(['idUtilisateur1' => $pseudo, 'idUtilisateur2' => $this->getUser()->getId()]);
        if($relation == NULL){
-         $relation = $relations->findOneBy(['idUtilisateur2' => $pseudo]);
+        return $this->redirectToRoute('profile', array('pseudo' => $pseudo));
        }
        $em->remove($relation);
        $em->flush();
@@ -162,6 +162,28 @@ class AmisController extends DefaultController
              ));
 
         return $page;
+     }
+
+     /**
+     * @Route("/confirmRetrait/{pseudo}", name="confirm_retrait")
+     */
+     public function confirmRetrait($pseudo)
+     {
+
+       if ($this->getUser()->getId() == $pseudo){
+         $this->redirectToRoute('mon_profil');
+       }
+
+       $em =$this->getDoctrine()->getManager();
+       $relations = $em->getRepository('AppBundle:Connait');
+       $relation = $relations->findOneBy(['idUtilisateur1' => $pseudo, 'idUtilisateur2' => $this->getUser()->getId()]);
+       if($relation == NULL){
+        $relation = $relations->findOneBy(['idUtilisateur2' => $pseudo, 'idUtilisateur1' => $this->getUser()->getId()]);
+       }
+       $em->remove($relation);
+       $em->flush();
+
+      return $this->redirectToRoute('profile', array('pseudo' => $pseudo));
      }
 
 }
