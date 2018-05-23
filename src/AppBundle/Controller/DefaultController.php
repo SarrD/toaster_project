@@ -23,4 +23,14 @@ class DefaultController extends Controller
         ]);
         */
     }
+
+    /**
+     * @Route("/404", name="profile_not_found")
+     */
+    public function notFound(Request $request)
+    {
+
+      return $this->render('pageNotFound.html.twig');
+
+    }
 }
