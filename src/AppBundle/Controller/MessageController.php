@@ -60,7 +60,7 @@ public function message(Request $request, $id_destinataire)
             $id_message = $repo->findOneBy(array(),array('id'=>'DESC'));
             //$id_message = $id_message->getId();
 
-            if($id_message == NULL){
+           if($id_message == NULL){
               $id_message = 0;
             }
 
@@ -82,7 +82,7 @@ if($request->getMethod()=="POST" && $request->get('method')=="getMessage"){
   // and aliases it to "m"
 
   $query = $this->getDoctrine()->getManager()
-  ->createQuery("SELECT ue.nom nom_emmeteur, ue.prenom prenom_emmeteur, m.texte
+  ->createQuery("SELECT ue.nom nom_emmeteur, ue.prenom prenom_emmeteur, m.texte, m.id id
                 FROM 'AppBundle:Utilisateur' ue, 'AppBundle:Utilisateur' ud, 'AppBundle:Message' m
                 WHERE m.idEmmeteur = ue.id
                 AND m.idDestinataire=ud.id
@@ -99,22 +99,19 @@ if($request->getMethod()=="POST" && $request->get('method')=="getMessage"){
   $last_message = $query->getArrayResult();
   $id_message = $repo->findOneBy(array(),array('id'=>'DESC'));
   //$id_message = $id_message->getId();
-
-  if($id_message == NULL){
-    $id_message = new Message();
+  if($id_message){
+    $id_message= new Message();
   }
 
 $response = array('message' =>$last_message,
-  'id_message'=>$id_message
+  'id_message'=>$id_message,
 );
 
 
 return new JsonResponse($response);
 
 }
-if($id_message == NULL){
-  $id_message = new Message();
-}
+
                //Creation du tableau de parametres de profil pour le template twig
                //Retour du template rempli
                return $this->render('pageMessage.html.twig', array(
