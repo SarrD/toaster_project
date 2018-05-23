@@ -13,16 +13,18 @@ use Symfony\Component\HttpFoundation\File\File;
 class PhotoController extends Controller
 {
     /**
-     * @Route("/changerphoto/{pseudo}", name="app_product_new")
+     * @Route("/changerphoto", name="app_product_new")
      */
-    public function newAction(Request $request,$pseudo)
+    public function newAction(Request $request)
     {
       $file = null;
 
       $users = $this->getDoctrine()->getManager()->getRepository('AppBundle:Utilisateur');
       //$query = $em->createQuery("SELECT u FROM Utilisateur WHERE  = u.id = :id ");
       //$profile = $query->getResult();
-      $user = $users->findOneBy(['id' => $pseudo]);
+
+      $user = $users->findOneBy(['id' =>  $this->getUser()->getId()]);
+
 
       if($user == null){
         $this->redirectToRoute('profile_not_found');
