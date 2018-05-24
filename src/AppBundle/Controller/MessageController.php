@@ -59,6 +59,7 @@ public function message(Request $request, $id_destinataire)
 
             $repo = $this->getDoctrine()->getManager()->getRepository('AppBundle:Message');
             $id_message = $repo->findOneBy(array(),array('id'=>'DESC'));
+            $id_message = $id_message->getId();
             //$id_message = $id_message->getId();
 
 
@@ -74,27 +75,27 @@ $old_messages_txt =$this->getMessages($user_emmeteur,$user_destinataire);
 if($request->getMethod()=="POST" && $request->get('method')=="getMessage"){
 
 
-      $repository = $this->getDoctrine()
-      ->getRepository(Message::class);
-  // createQueryBuilder() automatically selects FROM AppBundle:Message
-  // and aliases it to "m"
+  $repository = $this->getDoctrine()
+  ->getRepository(Message::class);
+// createQueryBuilder() automatically selects FROM AppBundle:Message
+// and aliases it to "m"
 
-  $query = $this->getDoctrine()->getManager()
-  ->createQuery("SELECT ue.nom nom_emmeteur, ue.prenom prenom_emmeteur, m.texte, m.id id
-                FROM 'AppBundle:Utilisateur' ue, 'AppBundle:Utilisateur' ud, 'AppBundle:Message' m
-                WHERE m.idEmmeteur = ue.id
-                AND m.idDestinataire=ud.id
-                AND ((ud.id=:dest AND ue.id=:emmet) OR (ud.id=:emmet AND ue.id=:dest))
-                AND m.id > :id
-                ORDER BY m.id DESC");
+$query = $this->getDoctrine()->getManager()
+->createQuery("SELECT ue.nom nom_emmeteur, ue.prenom prenom_emmeteur, m.texte, m.id id
+            FROM 'AppBundle:Utilisateur' ue, 'AppBundle:Utilisateur' ud, 'AppBundle:Message' m
+            WHERE m.idEmmeteur = ue.id
+            AND m.idDestinataire=ud.id
+            AND ((ud.id=:dest AND ue.id=:emmet) OR (ud.id=:emmet AND ue.id=:dest))
+            AND m.id > :id
+            ORDER BY m.id DESC");
 
 
 
-  $query->setParameter('emmet',$user_emmeteur->getId())
-        ->setParameter('dest',$user_destinataire->getId())
-        ->setParameter('id',$request->get('id_message'));
+$query->setParameter('emmet',$user_emmeteur->getId())
+    ->setParameter('dest',$user_destinataire->getId())
+    ->setParameter('id',$request->get('id_message'));
 
-  $last_message = $query->getArrayResult();
+$last_message = $query->getArrayResult();
   $id_message = $repo->findOneBy(array(),array('id'=>'DESC'));
   //$id_message = $id_message->getId();
   if($id_message){
@@ -170,5 +171,7 @@ public function getListeAmis($idUser)
 //  $liste = [$this,$this,$this];
     return $liste;
 }
+
+
 
 }
